@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5367A22F1F5306616722C341DA667951D85CE6D8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5367A22F1F5306616722C341DA667951D85CE6D8" : 0,
+    "E2644BDFC3FD0AFAF0EAFDFD50A1D7C7E4FAF755" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B97C34FB-CB4D-4131-AA41-981D949EBD42",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5367A22F1F5306616722C341DA667951D85CE6D8" : "TripPlanner\/",
+    "E2644BDFC3FD0AFAF0EAFDFD50A1D7C7E4FAF755" : "TripPlanner\/TripPlanner\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TripPlanner",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TripPlanner.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sahith00\/TripPlanner.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5367A22F1F5306616722C341DA667951D85CE6D8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sahith00\/TripPlanner.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E2644BDFC3FD0AFAF0EAFDFD50A1D7C7E4FAF755"
+    }
+  ]
+}
