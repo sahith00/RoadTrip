@@ -71,9 +71,17 @@ class GasStationViewController: UIViewController {
         Alamofire.request(.GET, apiToContact, parameters: ["origin": "Bengaluru,+India", "destination": "Andhra+Pradesh,+India", "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
                  if let JSON = response.result.value {
-                    JSON["routes"]!![0]["legs"]!![0]["steps"]!!
-  //                      print(json["polyline"]!!["points"]!!)
-                   
+                    
+                    let count = JSON["routes"]!![0]["legs"]!![0]["steps"]!?.count
+                    
+                    var index = 0
+                    
+                    while index < count {
+                        let step = JSON["routes"]!![0]["legs"]!![0]["steps"]!![index]
+                        print(step["polyline"]!!["points"])
+                        index+=1
+                    }
+                    
                }
         }
     }
