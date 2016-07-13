@@ -25,10 +25,10 @@ class GasStationViewController: UIViewController {
         let startCoord: (lat:Double, long:Double) = (15.866, 76.201)
         let endCoord: (lat:Double, long:Double) = (16.823, 78.954)
         
-        let camera = GMSCameraPosition.cameraWithLatitude(15.866, longitude: 77.201, zoom: 6)
-        mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
+        let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 6)
+        //let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
         //mapView.myLocationEnabled = true
-        
+        mapView.camera = camera
         
         let marker = GMSMarker()
         let geocoder = GMSGeocoder()
@@ -57,6 +57,7 @@ class GasStationViewController: UIViewController {
                 marker3.position = CLLocationCoordinate2D(latitude: aPlacemark.location!.coordinate.latitude, longitude: aPlacemark.location!.coordinate.longitude)
             }
         }
+        
         let path = GMSMutablePath()
         path.addLatitude(startCoord.lat, longitude: startCoord.long)
         path.addLatitude(endCoord.lat, longitude: endCoord.long)
@@ -75,12 +76,17 @@ class GasStationViewController: UIViewController {
                     let count = JSON["routes"]!![0]["legs"]!![0]["steps"]!?.count
                     
                     var index = 0
+                    var points: [AnyObject] = []
                     
                     while index < count {
                         let step = JSON["routes"]!![0]["legs"]!![0]["steps"]!![index]
-                        print(step["polyline"]!!["points"])
+                        let point = step["polyline"]!!["points"]!!
+                        points.append(point)
                         index+=1
                     }
+                    print(points)
+                    print(points.count)
+                    print(points[0])
                     
                }
         }

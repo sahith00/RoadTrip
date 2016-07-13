@@ -11,15 +11,15 @@ import GoogleMaps
 
 class RestaurantViewController: UIViewController {
 
+    @IBOutlet weak var mapView: GMSMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         let camera = GMSCameraPosition.cameraWithLatitude(-33.86,
                                                           longitude: 151.20, zoom: 6)
-        let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
-        mapView.myLocationEnabled = true
-        self.view = mapView
+        mapView.camera = camera
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(-33.86, 151.20)

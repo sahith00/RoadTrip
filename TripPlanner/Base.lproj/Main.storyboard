@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uzc-8M-WQd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="iOz-Ai-70k">
+            <objects>
+                <navigationController id="uzc-8M-WQd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EF3-Fa-3jD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="A9k-sS-XR5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3h1-wM-qpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="-576"/>
+        </scene>
         <!--Trip View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-p6-3TT">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-p6-3TT">
                                 <rect key="frame" x="252" y="135" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wnj-FS-3vw"/>
@@ -26,13 +42,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose ending address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsQ-AE-kYn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose ending address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsQ-AE-kYn">
                                 <rect key="frame" x="210" y="237" width="181" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-Vm-uCr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-Vm-uCr">
                                 <rect key="frame" x="252" y="334" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="LXn-3a-7HB"/>
@@ -41,14 +57,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2C-N8-Vb7">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2C-N8-Vb7">
                                 <rect key="frame" x="259" y="428" width="82" height="30"/>
                                 <state key="normal" title="Plan my trip"/>
                                 <connections>
                                     <segue destination="nc1-y0-BH8" kind="show" id="kUy-zt-Y3h"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose starting address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qT-XIc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose starting address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qT-XIc">
                                 <rect key="frame" x="207" y="65" width="187.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -70,6 +86,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="A2C-N8-Vb7" secondAttribute="bottom" constant="142" id="lMu-XH-HbD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="RmE-Sl-G8R"/>
                     <connections>
                         <outlet property="endingTextField" destination="5vL-Vm-uCr" id="N1K-QV-7rx"/>
                         <outlet property="planningButton" destination="A2C-N8-Vb7" id="IVr-YM-JDw"/>
@@ -92,24 +109,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JuW-9o-kSz">
-                                <rect key="frame" x="0.0" y="-5" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Hotels" id="3yO-Pr-xrY"/>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSJ-Ny-b1T" customClass="GMSMapView">
-                                <rect key="frame" x="196" y="162" width="240" height="128"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSJ-Ny-b1T" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="49" width="600" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dSJ-Ny-b1T" secondAttribute="trailing" id="N1z-Fs-csu"/>
+                            <constraint firstItem="Jq8-Os-OWi" firstAttribute="top" secondItem="dSJ-Ny-b1T" secondAttribute="bottom" id="V6S-pl-tAd"/>
+                            <constraint firstItem="dSJ-Ny-b1T" firstAttribute="centerX" secondItem="bT9-Ec-4FS" secondAttribute="centerX" id="hQz-ai-82M"/>
+                            <constraint firstItem="dSJ-Ny-b1T" firstAttribute="centerY" secondItem="bT9-Ec-4FS" secondAttribute="centerY" id="pOa-aE-P0n"/>
+                            <constraint firstItem="dSJ-Ny-b1T" firstAttribute="leading" secondItem="bT9-Ec-4FS" secondAttribute="leading" id="pnI-AZ-ROR"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Hotels" id="gwV-kL-iQ1" userLabel="Hotels"/>
+                    <connections>
+                        <outlet property="mapView" destination="dSJ-Ny-b1T" id="S6q-ak-TPy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dAh-cg-wpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759" y="194"/>
+            <point key="canvasLocation" x="1771" y="192"/>
         </scene>
         <!--Restaurant View Controller-->
         <scene sceneID="sI6-aB-ABi">
@@ -123,24 +144,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVm-l4-o5X">
-                                <rect key="frame" x="0.0" y="-5" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Restaurants" id="bPI-Yf-E2r"/>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-Hl-Zt2" customClass="GMSMapView">
-                                <rect key="frame" x="215" y="188" width="240" height="128"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-Hl-Zt2" customClass="GMSMapView">
+                                <rect key="frame" x="100" y="100" width="400" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="ep8-S1-Ydu"/>
+                                    <constraint firstAttribute="height" constant="400" id="mbl-AS-O4B"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="centerX" secondItem="oyf-sQ-Kph" secondAttribute="centerX" id="7IA-ao-Mbh"/>
+                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="centerY" secondItem="oyf-sQ-Kph" secondAttribute="centerY" id="SB8-WE-ROf"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Restaurants" id="xhi-en-377" userLabel="Restaurants"/>
+                    <connections>
+                        <outlet property="mapView" destination="M7o-Hl-Zt2" id="RgJ-q6-iAj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3N-pG-eun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759" y="861"/>
+            <point key="canvasLocation" x="1771" y="887"/>
         </scene>
         <!--Gas Station View Controller-->
         <scene sceneID="QEh-nn-A1C">
@@ -154,24 +180,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-K3-CIF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Gas Stations" id="wRF-12-qMe">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="LM9-wF-THb">
-                                            <connections>
-                                                <segue destination="Vv8-Av-PjK" kind="unwind" identifier="Cancel" unwindAction="unwindToTripViewController:" id="UWH-yt-GT6"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-0G-jLu" customClass="GMSMapView">
-                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                <rect key="frame" x="100" y="100" width="400" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="PrB-R8-C1E"/>
-                                    <constraint firstAttribute="height" constant="128" id="biY-b9-YOy"/>
+                                    <constraint firstAttribute="width" constant="400" id="Slj-J9-vLe"/>
+                                    <constraint firstAttribute="height" constant="400" id="XUw-Qz-xeL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -187,7 +201,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfv-Xy-cm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Vv8-Av-PjK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1759" y="-562"/>
         </scene>
