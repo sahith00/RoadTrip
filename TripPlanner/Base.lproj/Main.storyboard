@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-p6-3TT">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-p6-3TT">
                                 <rect key="frame" x="252" y="135" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wnj-FS-3vw"/>
@@ -42,13 +42,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose ending address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsQ-AE-kYn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose ending address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsQ-AE-kYn">
                                 <rect key="frame" x="210" y="237" width="181" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-Vm-uCr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-Vm-uCr">
                                 <rect key="frame" x="252" y="334" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="LXn-3a-7HB"/>
@@ -57,14 +57,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2C-N8-Vb7">
-                                <rect key="frame" x="259" y="428" width="82" height="30"/>
-                                <state key="normal" title="Plan my trip"/>
-                                <connections>
-                                    <segue destination="nc1-y0-BH8" kind="show" id="kUy-zt-Y3h"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose starting address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qT-XIc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose starting address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qT-XIc">
                                 <rect key="frame" x="207" y="65" width="187.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,18 +71,20 @@
                             <constraint firstItem="Nnd-qT-XIc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="HRE-pG-hAm"/>
                             <constraint firstItem="YVa-p6-3TT" firstAttribute="top" secondItem="Nnd-qT-XIc" secondAttribute="bottom" constant="49" id="HuD-5I-oCM"/>
                             <constraint firstItem="5vL-Vm-uCr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wq4-aU-YuP"/>
-                            <constraint firstItem="A2C-N8-Vb7" firstAttribute="top" secondItem="5vL-Vm-uCr" secondAttribute="bottom" constant="64" id="YDZ-13-0EH"/>
                             <constraint firstItem="qsQ-AE-kYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZyF-PX-dUt"/>
-                            <constraint firstItem="A2C-N8-Vb7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="asS-Ms-p3P"/>
                             <constraint firstItem="Nnd-qT-XIc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bI9-Bf-eBp"/>
                             <constraint firstItem="YVa-p6-3TT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="frQ-1b-heB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="A2C-N8-Vb7" secondAttribute="bottom" constant="142" id="lMu-XH-HbD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RmE-Sl-G8R"/>
+                    <navigationItem key="navigationItem" id="RmE-Sl-G8R">
+                        <barButtonItem key="rightBarButtonItem" title="Plan my Trip" id="x0q-Ed-Ivb">
+                            <connections>
+                                <segue destination="nc1-y0-BH8" kind="show" id="1pr-15-e5y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="endingTextField" destination="5vL-Vm-uCr" id="N1K-QV-7rx"/>
-                        <outlet property="planningButton" destination="A2C-N8-Vb7" id="IVr-YM-JDw"/>
                         <outlet property="startingTextField" destination="YVa-p6-3TT" id="xix-uN-atQ"/>
                     </connections>
                 </viewController>

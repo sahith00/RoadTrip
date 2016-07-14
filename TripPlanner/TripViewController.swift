@@ -13,10 +13,6 @@ class TripViewController: UIViewController {
 
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
-    @IBOutlet weak var planningButton: UIButton!
-    
-    let marker = GMSMarker()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +20,11 @@ class TripViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        Address.startAddress = startingTextField.text ?? ""
+        Address.endAddress = endingTextField.text ?? ""
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
