@@ -71,17 +71,16 @@ class GasStationViewController: UIViewController {
                     }
                     self.createMarker(startCoord.lat, long: startCoord.long)
                     self.createMarker(endCoord.lat, long: endCoord.long)
+                    YelpClient.sharedInstance.searchWithTerm("Taco Bell", lat: startCoord.lat, long: startCoord.long, completion: { (gasStations, error) in
+                        for gasStation in gasStations {
+                            if let lat = gasStation.lat {
+                                if let long = gasStation.long {
+                                    self.createMarker(lat, long: long)
+                                }
+                            }
+                        }
+                    })
                 }
-        }
-        
-        YelpClient.sharedInstance.searchWithTerm("") { (gasStations, error) in
-            for gasStation in gasStations {
-                if let lat = gasStation.lat {
-                    if let long = gasStation.long {
-                        self.createMarker(lat, long: long)
-                    }
-                }
-            }
         }
     }
     
@@ -90,8 +89,8 @@ class GasStationViewController: UIViewController {
         let geocoder = GMSGeocoder()
         marker.position = CLLocationCoordinate2DMake(lat, long)
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
-            marker.title = response?.firstResult()?.locality
-            marker.snippet = response?.firstResult()?.country
+            marker.title = response?.firstResult()?.addressLine1()
+            marker.snippet = response?.firstResult()?.locality
         }
         marker.map = self.mapView
     }
