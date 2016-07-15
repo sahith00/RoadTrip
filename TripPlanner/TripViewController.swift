@@ -21,8 +21,8 @@ class TripViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        Address.startAddress = startingTextField.text ?? ""
-        Address.endAddress = endingTextField.text ?? ""
+        Address.startAddress = startingTextField.text ?? "Andhra Pradesh, India"
+        Address.endAddress = endingTextField.text ?? "Bengaluru, India"
     }
     
     override func didReceiveMemoryWarning() {

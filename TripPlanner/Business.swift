@@ -17,7 +17,9 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
-    let locationCoordinate:CLLocation?
+    let lat:CLLocationDegrees?
+    let long:CLLocationDegrees?
+    
     
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
@@ -45,14 +47,17 @@ class Business: NSObject {
             }
             if let coordinate = location!["coordinate"] as? NSDictionary {
                 
-                let latitude = coordinate["latitude"] as! NSNumber
-                let longitude = coordinate["longitude"] as! NSNumber
-                locationCoordinate = CLLocation(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
+                let latitude = coordinate["latitude"] as! CLLocationDegrees
+                let longitude = coordinate["longitude"] as! CLLocationDegrees
+                lat = latitude
+                long = longitude
             } else {
-                locationCoordinate = nil
+                lat = nil
+                long = nil
             }
         } else {
-            locationCoordinate = nil
+            lat = nil
+            long = nil
         }
         self.address = address
         
