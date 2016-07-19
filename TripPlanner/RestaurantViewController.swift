@@ -14,7 +14,7 @@ import AlamofireImage
 import AlamofireNetworkActivityIndicator
 
 
-class RestaurantViewController: UIViewController {
+class RestaurantViewController: ViewControllerFunctions {
     
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -65,9 +65,9 @@ class RestaurantViewController: UIViewController {
                     let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 8)
                     self.mapView.camera = camera
                     
-                    self.createMarker(Address.startAddress, lat: startCoord.lat, long: startCoord.long)
-                    self.createMarker(Address.endAddress, lat: endCoord.lat, long: endCoord.long)
-                    self.addDirections(JSON as! [NSObject : AnyObject])
+                    self.createMarker(Address.startAddress, lat: startCoord.lat, long: startCoord.long, mapView: self.mapView)
+                    self.createMarker(Address.endAddress, lat: endCoord.lat, long: endCoord.long, mapView: self.mapView)
+                    self.addDirections(JSON as! [NSObject : AnyObject], mapView: self.mapView)
                     
                     var i = 0
                     let len = endCoords.lats.count
@@ -77,7 +77,7 @@ class RestaurantViewController: UIViewController {
                                 for restaurant in restaurants {
                                     if let lat = restaurant.lat {
                                         if let long = restaurant.long {
-                                            self.createMarker(restaurant.name!, lat: lat, long: long)
+                                            self.createMarker(restaurant.name!, lat: lat, long: long, mapView: self.mapView)
                                         }
                                     }
                                 }
@@ -87,50 +87,6 @@ class RestaurantViewController: UIViewController {
                     }
                 }
         }
-    }
-    
-    func createMarker(title: String, lat: Double, long: Double) {
-        let marker = GMSMarker()
-        let geocoder = GMSGeocoder()
-        marker.position = CLLocationCoordinate2DMake(lat, long)
-        geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
-            if title == "" {
-                marker.title = response?.firstResult()?.addressLine1()
-            }
-            else {
-                marker.title = title
-            }
-            marker.snippet = response?.firstResult()?.locality
-        }
-        marker.map = self.mapView
-    }
-    
-    func createPath(route: String) {
-        let path: GMSPath = GMSPath(fromEncodedPath: route)!
-        
-        let polyline = GMSPolyline(path: path)
-        polyline.strokeColor = UIColor.redColor()
-        polyline.strokeWidth = 5.0
-        polyline.map = self.mapView
-    }
-    
-    func addDirections(json: [NSObject : AnyObject]) {
-        var routes: [NSObject : AnyObject] = (json["routes"]![0] as! [NSObject : AnyObject])
-        var route: [NSObject : AnyObject] = (routes["overview_polyline"] as! [NSObject : AnyObject])
-        let overview_route: String = (route["points"] as! String)
-        createPath(overview_route)
-    }
-    
-    func convertPointsToEncodedPath(points: [AnyObject]) -> String{
-        var ans: String = ""
-        //print(points)
-        print(points.count)
-        print(points[0] as! String)
-        for point in points {
-            let strpoint = point as! String
-            ans += strpoint
-        }
-        return ans
     }
     
     override func didReceiveMemoryWarning() {
