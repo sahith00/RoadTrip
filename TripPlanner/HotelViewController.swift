@@ -74,7 +74,7 @@ class HotelViewController: ViewControllerFunctions {
                     let len = self.endCoords.lats.count
                     while i < len {
                         if self.distances[i] < 0.05 {
-                            YelpClient.sharedInstance.searchWithTerm("Hotels", lat: self.endCoords.lats[i], long: self.endCoords.longs[i], completion: { (hotels, error) in
+                            YelpClient.sharedInstance.searchWithTerm("Hotels", lat: self.endCoords.lats[i], long: self.endCoords.longs[i], limit: 10, completion: { (hotels, error) in
                                 if hotels != nil {
                                     for hotel in hotels {
                                         if let lat = hotel.lat {
@@ -88,7 +88,7 @@ class HotelViewController: ViewControllerFunctions {
                         }
                         else {
                             let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                            YelpClient.sharedInstance.searchWithTerm("Hotels", lat: midpoint.lat, long: midpoint.long, completion: { (hotels, error) in
+                            YelpClient.sharedInstance.searchWithTerm("Hotels", lat: midpoint.lat, long: midpoint.long, limit: 10, completion: { (hotels, error) in
                                 if hotels != nil {
                                     for hotel in hotels {
                                         if let lat = hotel.lat {

@@ -23,6 +23,10 @@ class GasStationViewController: ViewControllerFunctions {
     var optimized: Bool?
     var waypoints: [AnyObject]?
     var waypointStrings: [String]?
+    var endCoords: (lats: [Double], longs: [Double]) = ([], [])
+    var startCoords: (lats: [Double], longs: [Double]) = ([], [])
+    var distances: [Double] = []
+    var midpoints: (lats: [Double], longs: [Double]) = ([], [])
     
     let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
     
@@ -38,8 +42,6 @@ class GasStationViewController: ViewControllerFunctions {
                     let count = JSON["routes"]!![0]["legs"]!![0]["steps"]!?.count
                     
                     var index = 0
-                    var endCoords: (lats: [Double], longs: [Double]) = ([], [])
-                    var startCoords: (lats: [Double], longs: [Double]) = ([], [])
                     
                     while index < count {
                         let routes = JSON["routes"] as! [AnyObject]
@@ -52,14 +54,15 @@ class GasStationViewController: ViewControllerFunctions {
                         let endLong = step["end_location"]!!["lng"]!!
                         let startLat = step["start_location"]!!["lat"]!!
                         let startLong = step["start_location"]!!["lng"]!!
-                        endCoords.lats.append(endLat.doubleValue)
-                        endCoords.longs.append(endLong.doubleValue)
-                        startCoords.lats.append(startLat.doubleValue)
-                        startCoords.longs.append(startLong.doubleValue)
+                        self.endCoords.lats.append(endLat.doubleValue)
+                        self.endCoords.longs.append(endLong.doubleValue)
+                        self.startCoords.lats.append(startLat.doubleValue)
+                        self.startCoords.longs.append(startLong.doubleValue)
+                        self.distances.append(self.findDistance(startLong.doubleValue, y1: startLat.doubleValue, x2: endLong.doubleValue, y2: endLat.doubleValue))
                         index+=1
                     }
                     
-                    let startCoord: (lat:Double, long:Double) = (startCoords.lats[0], startCoords.longs[0])
+                    let startCoord: (lat:Double, long:Double) = (self.startCoords.lats[0], self.startCoords.longs[0])
                     let endCoord: (lat:Double, long:Double) = (JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lat"]!!.doubleValue, JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lng"]!!.doubleValue)
                     
                     let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 8)
@@ -70,19 +73,35 @@ class GasStationViewController: ViewControllerFunctions {
                     self.addDirections(JSON as! [NSObject : AnyObject], mapView: self.mapView)
                     
                     var i = 0
-                    let len = endCoords.lats.count
+                    let len = self.endCoords.lats.count
                     while i < len {
-                        YelpClient.sharedInstance.searchWithTerm("Gas Stations", lat: endCoords.lats[i], long: endCoords.longs[i], completion: { (restaurants, error) in
-                            if restaurants != nil {
-                                for restaurant in restaurants {
-                                    if let lat = restaurant.lat {
-                                        if let long = restaurant.long {
-                                            self.createMarker(restaurant.name!, lat: lat, long: long, mapView: self.mapView)
+                        if self.distances[i] < 0.05 {
+                            YelpClient.sharedInstance.searchWithTerm("Gas Stations", lat: self.endCoords.lats[i], long: self.endCoords.longs[i], limit: 10, completion: { (gasStations, error) in
+                                if gasStations != nil {
+                                    for gasStation in gasStations {
+                                        if let lat = gasStation.lat {
+                                            if let long = gasStation.long {
+                                                self.createMarker(gasStation.name!, lat: lat, long: long, mapView: self.mapView)
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        })
+                            })
+                        }
+                        else {
+                            let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
+                            YelpClient.sharedInstance.searchWithTerm("Gas Stations", lat: midpoint.lat, long: midpoint.long, limit: 10, completion: { (gasStations, error) in
+                                if gasStations != nil {
+                                    for gasStation in gasStations {
+                                        if let lat = gasStation.lat {
+                                            if let long = gasStation.long {
+                                                self.createMarker(gasStation.name!, lat: lat, long: long, mapView: self.mapView)
+                                            }
+                                        }
+                                    }
+                                }
+                            })
+                        }
                         i+=1
                     }
                 }
