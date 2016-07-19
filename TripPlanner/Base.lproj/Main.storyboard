@@ -140,18 +140,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-Hl-Zt2" customClass="GMSMapView">
-                                <rect key="frame" x="100" y="100" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="ep8-S1-Ydu"/>
-                                    <constraint firstAttribute="height" constant="400" id="mbl-AS-O4B"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NMh-o9-RD6" firstAttribute="top" secondItem="M7o-Hl-Zt2" secondAttribute="bottom" id="54D-Ew-r9X"/>
                             <constraint firstItem="M7o-Hl-Zt2" firstAttribute="centerX" secondItem="oyf-sQ-Kph" secondAttribute="centerX" id="7IA-ao-Mbh"/>
-                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="centerY" secondItem="oyf-sQ-Kph" secondAttribute="centerY" id="SB8-WE-ROf"/>
+                            <constraint firstAttribute="trailing" secondItem="M7o-Hl-Zt2" secondAttribute="trailing" id="9Hn-0S-4iL"/>
+                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="top" secondItem="waO-9I-IFf" secondAttribute="bottom" id="IaC-SZ-BOt"/>
+                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="leading" secondItem="oyf-sQ-Kph" secondAttribute="leading" id="cEM-sg-7OW"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Restaurants" id="xhi-en-377" userLabel="Restaurants"/>
@@ -176,18 +175,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-0G-jLu" customClass="GMSMapView">
-                                <rect key="frame" x="100" y="100" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="Slj-J9-vLe"/>
-                                    <constraint firstAttribute="height" constant="400" id="XUw-Qz-xeL"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5tF-0G-jLu" firstAttribute="centerY" secondItem="pTb-He-9fO" secondAttribute="centerY" id="7Ov-NS-vNT"/>
+                            <constraint firstItem="5tF-0G-jLu" firstAttribute="leading" secondItem="pTb-He-9fO" secondAttribute="leading" id="5uo-T0-uly"/>
                             <constraint firstItem="5tF-0G-jLu" firstAttribute="centerX" secondItem="pTb-He-9fO" secondAttribute="centerX" id="EBW-Yb-m20"/>
+                            <constraint firstAttribute="trailing" secondItem="5tF-0G-jLu" secondAttribute="trailing" id="JlQ-n5-8Zc"/>
+                            <constraint firstItem="5tF-0G-jLu" firstAttribute="top" secondItem="k8c-UM-rAS" secondAttribute="bottom" id="Sce-fW-okI"/>
+                            <constraint firstItem="m39-9r-sCL" firstAttribute="top" secondItem="5tF-0G-jLu" secondAttribute="bottom" id="c5s-Zd-VjV"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Gas Stations" id="gfE-jt-1KY" userLabel="Gas Stations"/>

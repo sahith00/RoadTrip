@@ -11,10 +11,10 @@ import UIKit
 import AFNetworking
 import BDBOAuth1Manager
 
-let yelpConsumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
-let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
-let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
-let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
+let yelpConsumerKey = "e26Pw2B8_nzZQ40VaGv_oQ"
+let yelpConsumerSecret = "LPfA2ijyKvI_jFqdaRyR5E_SN_k"
+let yelpToken = "i2nP388_HF3o6xKWhxj2092gQk-VmI6h"
+let yelpTokenSecret = "A2aOlKlFlBW8dywkiM-iI65mQvY"
 
 enum YelpSortMode: Int {
     case BestMatched = 0, Distance, HighestRated
@@ -51,7 +51,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     }
     
     func searchWithTerm(term: String, lat: Double, long: Double, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
-        return searchWithTerm(term, lat: lat, long: long, sort: nil, categories: nil, deals: nil, completion: completion, offset: 0)
+        return searchWithTerm(term, lat: lat, long: long, sort: nil, categories: nil, deals: nil, completion: completion, offset: 1)
     }
     
     func searchWithTerm(term: String, lat: Double, long: Double, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void, offset:Int) -> AFHTTPRequestOperation {
@@ -75,8 +75,6 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         }
         
         parameters["offset"] = offset
-        
-        print(parameters)
         
         return self.GET("search", parameters: parameters, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             let dictionaries = response["businesses"] as? [NSDictionary]

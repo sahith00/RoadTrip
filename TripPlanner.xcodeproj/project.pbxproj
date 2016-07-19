@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				355646BF1D304D5400168E48 /* GasStationViewController.swift */,
-				355646BD1D304D4400168E48 /* RestaurantViewController.swift */,
 				355646BA1D304D1000168E48 /* HotelViewController.swift */,
+				355646BD1D304D4400168E48 /* RestaurantViewController.swift */,
 				355646B81D30276200168E48 /* TripViewController.swift */,
 			);
 			name = Views;

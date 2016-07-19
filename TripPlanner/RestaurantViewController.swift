@@ -8,17 +8,28 @@
 
 import UIKit
 import GoogleMaps
+import Foundation
 import Alamofire
+import AlamofireImage
+import AlamofireNetworkActivityIndicator
+
 
 class RestaurantViewController: UIViewController {
-
+    
     @IBOutlet weak var mapView: GMSMapView!
+    
+    var sensor: Bool?
+    var alternatives: Bool?
+    var optimized: Bool?
+    var waypoints: [AnyObject]?
+    var waypointStrings: [String]?
+    
+    let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
         
         Alamofire.request(.GET, apiToContact, parameters: ["origin": Address.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": Address.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
@@ -27,7 +38,6 @@ class RestaurantViewController: UIViewController {
                     let count = JSON["routes"]!![0]["legs"]!![0]["steps"]!?.count
                     
                     var index = 0
-                    var points: [AnyObject] = []
                     var endCoords: (lats: [Double], longs: [Double]) = ([], [])
                     var startCoords: (lats: [Double], longs: [Double]) = ([], [])
                     
@@ -38,7 +48,6 @@ class RestaurantViewController: UIViewController {
                         let leg = legs[0]
                         let steps = leg["steps"] as! [AnyObject]
                         let step = steps[index]
-                        let point = step["polyline"]!!["points"]!!
                         let endLat = step["end_location"]!!["lat"]!!
                         let endLong = step["end_location"]!!["lng"]!!
                         let startLat = step["start_location"]!!["lat"]!!
@@ -47,11 +56,8 @@ class RestaurantViewController: UIViewController {
                         endCoords.longs.append(endLong.doubleValue)
                         startCoords.lats.append(startLat.doubleValue)
                         startCoords.longs.append(startLong.doubleValue)
-                        points.append(point)
                         index+=1
                     }
-                    
-                    
                     
                     let startCoord: (lat:Double, long:Double) = (startCoords.lats[0], startCoords.longs[0])
                     let endCoord: (lat:Double, long:Double) = (JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lat"]!!.doubleValue, JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lng"]!!.doubleValue)
@@ -59,46 +65,60 @@ class RestaurantViewController: UIViewController {
                     let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 8)
                     self.mapView.camera = camera
                     
+                    self.createMarker(Address.startAddress, lat: startCoord.lat, long: startCoord.long)
+                    self.createMarker(Address.endAddress, lat: endCoord.lat, long: endCoord.long)
+                    self.addDirections(JSON as! [NSObject : AnyObject])
+                    
                     var i = 0
                     let len = endCoords.lats.count
                     while i < len {
-                        self.createPath(startCoords.lats[i], startLong: startCoords.longs[i], endLat: endCoords.lats[i], endLong: endCoords.longs[i])
+                        YelpClient.sharedInstance.searchWithTerm("Restaurants", lat: endCoords.lats[i], long: endCoords.longs[i], completion: { (restaurants, error) in
+                            if restaurants != nil {
+                                for restaurant in restaurants {
+                                    if let lat = restaurant.lat {
+                                        if let long = restaurant.long {
+                                            self.createMarker(restaurant.name!, lat: lat, long: long)
+                                        }
+                                    }
+                                }
+                            }
+                        })
                         i+=1
                     }
-                    self.createMarkers(startCoord.lat, startLong: startCoord.long, endLat: endCoord.lat, endLong: endCoord.long)
                 }
         }
     }
     
-    func createMarkers(startLat: Double, startLong: Double, endLat: Double, endLong: Double) {
+    func createMarker(title: String, lat: Double, long: Double) {
         let marker = GMSMarker()
         let geocoder = GMSGeocoder()
-        marker.position = CLLocationCoordinate2DMake(startLat, startLong)
+        marker.position = CLLocationCoordinate2DMake(lat, long)
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
-            marker.title = response?.firstResult()?.locality
-            marker.snippet = response?.firstResult()?.country
+            if title == "" {
+                marker.title = response?.firstResult()?.addressLine1()
+            }
+            else {
+                marker.title = title
+            }
+            marker.snippet = response?.firstResult()?.locality
         }
         marker.map = self.mapView
-        
-        let marker2 = GMSMarker()
-        let geocoder2 = GMSGeocoder()
-        marker2.position = CLLocationCoordinate2DMake(endLat, endLong)
-        marker2.map = self.mapView
-        geocoder2.reverseGeocodeCoordinate(marker2.position) { (response, error) in
-            marker2.title = response?.firstResult()?.locality
-            marker2.snippet = response?.firstResult()?.country
-        }
     }
     
-    func createPath(startLat: Double, startLong: Double, endLat: Double, endLong: Double) {
-        let path = GMSMutablePath()
-        path.addLatitude(startLat, longitude: startLong)
-        path.addLatitude(endLat, longitude: endLong)
+    func createPath(route: String) {
+        let path: GMSPath = GMSPath(fromEncodedPath: route)!
         
         let polyline = GMSPolyline(path: path)
         polyline.strokeColor = UIColor.redColor()
         polyline.strokeWidth = 5.0
         polyline.map = self.mapView
+    }
+    
+    func addDirections(json: [NSObject : AnyObject]) {
+        var routes: [NSObject : AnyObject] = (json["routes"]![0] as! [NSObject : AnyObject])
+        var route: [NSObject : AnyObject] = (routes["overview_polyline"] as! [NSObject : AnyObject])
+        let overview_route: String = (route["points"] as! String)
+        createPath(overview_route)
     }
     
     func convertPointsToEncodedPath(points: [AnyObject]) -> String{
