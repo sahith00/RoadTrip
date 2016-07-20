@@ -11,10 +11,13 @@ import GoogleMaps
 
 class ViewControllerFunctions: UIViewController {
     
-    func createMarker(title: String, lat: Double, long: Double, mapView: GMSMapView) {
+    func createMarker(isDestinationMarker: Bool, title: String, lat: Double, long: Double, mapView: GMSMapView) {
         let marker = GMSMarker()
         let geocoder = GMSGeocoder()
         marker.position = CLLocationCoordinate2DMake(lat, long)
+        if isDestinationMarker {
+            marker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+        }
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
             if title == "" {
                 marker.title = response?.firstResult()?.addressLine1()
@@ -32,7 +35,7 @@ class ViewControllerFunctions: UIViewController {
         
         let polyline = GMSPolyline(path: path)
         polyline.strokeColor = UIColor.blueColor()
-        polyline.strokeWidth = 1.0
+        polyline.strokeWidth = 5.0
         polyline.map = mapView
     }
     
@@ -66,6 +69,20 @@ class ViewControllerFunctions: UIViewController {
         let p1: Double = (x1 + x2) * 0.5
         let p2: Double = (y1 + y2) * 0.5
         return (p2, p1)
+    }
+    
+    func callYelp(business: String, latitude: Double, longitude: Double, mapView: GMSMapView) {
+        YelpClient.sharedInstance.searchWithTerm(business, lat: latitude, long: longitude, completion: { (businesses, error) in
+            if businesses != nil {
+                for business in businesses {
+                    if let lat = business.lat {
+                        if let long = business.long {
+                            self.createMarker(false, title: business.name!, lat: lat, long: long, mapView:mapView)
+                        }
+                    }
+                }
+            }
+        })
     }
 
 }

@@ -21,10 +21,26 @@ class TripViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        Address.startAddress = startingTextField.text ?? "Andhra Pradesh, India"
-        Address.endAddress = endingTextField.text ?? "Bengaluru, India"
+        if startingTextField.text == "" {
+            Address.startAddress = "Foster City, CA"
+        }
+        else {
+            Address.startAddress = startingTextField.text!
+        }
+        if endingTextField.text == "" {
+            Address.endAddress = "San Francisco, CA"
+        }
+        else {
+            Address.endAddress = endingTextField.text!
+        }
     }
     
+    @IBAction func onLaunchClicked(sender: AnyObject) {
+        let acController = GMSAutocompleteViewController()
+        acController.delegate = self
+        self.presentViewController(acController, animated: true, completion: nil)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,4 +57,27 @@ class TripViewController: UIViewController {
     }
     */
 
+}
+
+extension TripViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(viewController: GMSAutocompleteViewController, didAutocompleteWithPlace place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func viewController(viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: NSError) {
+        // TODO: handle the error.
+        print("Error: \(error.description)")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(viewController: GMSAutocompleteViewController) {
+        print("Autocomplete was cancelled.")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
