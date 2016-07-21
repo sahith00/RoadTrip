@@ -50,11 +50,11 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(term: String, lat: Double, long: Double, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
-        return searchWithTerm(term, lat: lat, long: long, sort: nil, categories: nil, deals: nil, offset: 1,completion: completion)
+    func searchWithTerm(term: String, lat: Double, long: Double, radius: Double, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+        return searchWithTerm(term, lat: lat, long: long, sort: nil, categories: nil, deals: nil, radius: radius, offset: 1,completion: completion)
     }
     
-    func searchWithTerm(term: String, lat: Double, long: Double, sort: YelpSortMode?, categories: [String]?, deals: Bool?, offset: Int, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(term: String, lat: Double, long: Double, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius: Double, offset: Int, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         // Default the location to San Francisco
@@ -73,6 +73,8 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         if deals != nil {
             parameters["deals_filter"] = deals!
         }
+        
+        parameters["radius_filter"] = radius
         
         parameters["offset"] = offset
         

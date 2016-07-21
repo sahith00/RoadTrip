@@ -7,33 +7,28 @@
 //
 
 import UIKit
-import GoogleMaps
 import Foundation
+import Dispatch
+import GoogleMaps
 import Alamofire
-import AlamofireImage
-import AlamofireNetworkActivityIndicator
-
 
 class GasStationViewController: ViewControllerFunctions {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    var sensor: Bool?
-    var alternatives: Bool?
-    var optimized: Bool?
-    var waypoints: [AnyObject]?
-    var waypointStrings: [String]?
     var endCoords: (lats: [Double], longs: [Double]) = ([], [])
     var startCoords: (lats: [Double], longs: [Double]) = ([], [])
     var distances: [Double] = []
     var midpoints: (lats: [Double], longs: [Double]) = ([], [])
-    
-    let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
+    var markers: [GMSMarker] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
+        let business = "Gas Stations"
         
         Alamofire.request(.GET, apiToContact, parameters: ["origin": Address.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": Address.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
@@ -72,35 +67,53 @@ class GasStationViewController: ViewControllerFunctions {
                     self.createMarker(true, title: Address.endAddress, lat: endCoord.lat, long: endCoord.long, mapView: self.mapView)
                     self.addDirections(JSON as! [NSObject : AnyObject], mapView: self.mapView)
                     
+                    print(self.findAverage(self.distances))
+                    
                     var i = 1
                     let len = self.endCoords.lats.count
-                    self.callYelp("Gas Stations", latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], mapView: self.mapView)
+                    var radius = (self.findAverage(self.distances)/2)*1e6
+                    if radius > 40000 {
+                        radius = 40000
+                    }
+                    
+                    self.callYelp(business, latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], radius: radius, mapView: self.mapView, markers: self.markers)
+                    
                     while i < len {
+                        
                         if self.distances[i] < 0.02 {
-                            self.callYelp("Gas Stations", latitude: self.endCoords.lats[i], longitude: self.endCoords.longs[i], mapView: self.mapView)
+                            
+                            self.callYelp(business, latitude: self.endCoords.lats[i], longitude: self.endCoords.longs[i], radius: radius, mapView: self.mapView, markers: self.markers)
                         }
                         else {
+                            
                             let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                            self.callYelp("Gas Stations", latitude: midpoint.lat, longitude: midpoint.long, mapView: self.mapView)
+                            
+                            self.callYelp(business, latitude: midpoint.lat, longitude: midpoint.long, radius: radius, mapView: self.mapView, markers: self.markers)
+                            
                             if self.distances[i] < 0.05 {
+                                
                                 let midpoint2: (lat: Double, long: Double) = self.findMidpoint(midpoint.long, y1: midpoint.lat, x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                                self.callYelp("Gas Stations", latitude: midpoint2.lat, longitude: midpoint2.long, mapView: self.mapView)
                                 let midpoint3: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: midpoint.long, y2: midpoint.lat)
-                                self.callYelp("Gas Stations", latitude: midpoint3.lat, longitude: midpoint3.long, mapView: self.mapView)
+                                
+                                self.callYelp(business, latitude: midpoint2.lat, longitude: midpoint2.long, radius: radius, mapView: self.mapView, markers: self.markers)
+                                self.callYelp(business, latitude: midpoint3.lat, longitude: midpoint3.long, radius: radius, mapView: self.mapView, markers: self.markers)
                             }
                             else {
+                                
                                 var startMidpoints: [(lat: Double, long: Double)] = []
                                 var endMidpoints: [(lat: Double, long: Double)] = []
                                 startMidpoints.append(midpoint)
                                 endMidpoints.append(midpoint)
-                                print(startMidpoints, endMidpoints)
+                                
                                 for j in 1 ... 5 {
+                                    
                                     let startMidpoint: (lat: Double, long: Double) = self.findMidpoint(startMidpoints[j-1].long, y1: startMidpoints[j-1].lat, x2: self.startCoords.longs[i], y2: self.startCoords.lats[i])
                                     let endMidpoint: (lat: Double, long: Double) = self.findMidpoint(endMidpoints[j-1].long, y1: endMidpoints[j-1].lat, x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
                                     startMidpoints.append(startMidpoint)
                                     endMidpoints.append(endMidpoint)
-                                    self.callYelp("Gas Stations", latitude: startMidpoint.lat, longitude: startMidpoint.long, mapView: self.mapView)
-                                    self.callYelp("Gas Stations", latitude: endMidpoint.lat, longitude: endMidpoint.long, mapView: self.mapView)
+                                    
+                                    self.callYelp(business, latitude: startMidpoint.lat, longitude: startMidpoint.long, radius: radius, mapView: self.mapView, markers: self.markers)
+                                    self.callYelp(business, latitude: endMidpoint.lat, longitude: endMidpoint.long, radius: radius, mapView: self.mapView, markers: self.markers)
                                 }
                             }
                         }

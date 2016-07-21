@@ -11,7 +11,7 @@ import GoogleMaps
 
 class ViewControllerFunctions: UIViewController {
     
-    func createMarker(isDestinationMarker: Bool, title: String, lat: Double, long: Double, mapView: GMSMapView){
+    func createMarker(isDestinationMarker: Bool, title: String, lat: Double, long: Double, mapView: GMSMapView) -> GMSMarker{
         let marker = GMSMarker()
         let geocoder = GMSGeocoder()
         marker.position = CLLocationCoordinate2DMake(lat, long)
@@ -22,6 +22,14 @@ class ViewControllerFunctions: UIViewController {
             marker.title = title
             marker.snippet = response?.firstResult()?.locality
         }
+        marker.map = mapView
+        return marker
+    }
+    
+    func createMarkerAtTap(didTapAtCoordinate coordinate: CLLocationCoordinate2D, title: String, mapView: GMSMapView) {
+        let marker = GMSMarker()
+        marker.position.latitude = coordinate.latitude
+        marker.position.longitude = coordinate.longitude
         marker.map = mapView
     }
     
@@ -66,14 +74,22 @@ class ViewControllerFunctions: UIViewController {
         return (p2, p1)
     }
     
-    func callYelp(business: String, latitude: Double, longitude: Double, mapView: GMSMapView) {
-        YelpClient.sharedInstance.searchWithTerm(business, lat: latitude, long: longitude, completion: { (businesses, error) in
+    func findAverage(arr: [Double]) -> Double{
+        var sum: Double = 0
+        for i in 0..<arr.count {
+            sum += arr[i]
+        }
+        return(sum/Double(arr.count))
+    }
+    
+    func callYelp(business: String, latitude: Double, longitude: Double, radius: Double, mapView: GMSMapView, var markers: [GMSMarker]) {
+        YelpClient.sharedInstance.searchWithTerm(business, lat: latitude, long: longitude, radius: radius, completion: { (businesses, error) in
             if businesses != nil {
                 for business in businesses {
                     if let lat = business.lat {
                         if let long = business.long {
-                            
-                            self.createMarker(false, title: business.name!, lat: lat, long: long, mapView:mapView)
+                            let marker: GMSMarker = self.createMarker(false, title: business.name!, lat: lat, long: long, mapView:mapView)
+                            markers.append(marker)
                         }
                     }
                 }

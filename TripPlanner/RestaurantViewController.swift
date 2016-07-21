@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import GoogleMaps
 import Foundation
+import Dispatch
+import GoogleMaps
 import Alamofire
-import AlamofireImage
-import AlamofireNetworkActivityIndicator
-
 
 class RestaurantViewController: ViewControllerFunctions {
     
@@ -27,13 +25,15 @@ class RestaurantViewController: ViewControllerFunctions {
     var startCoords: (lats: [Double], longs: [Double]) = ([], [])
     var distances: [Double] = []
     var midpoints: (lats: [Double], longs: [Double]) = ([], [])
-    
-    let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
+    var markers: [GMSMarker] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
+        let business = "Restaurants"
         
         Alamofire.request(.GET, apiToContact, parameters: ["origin": Address.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": Address.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
@@ -74,32 +74,49 @@ class RestaurantViewController: ViewControllerFunctions {
                     
                     var i = 1
                     let len = self.endCoords.lats.count
-                    self.callYelp("Restaurants", latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], mapView: self.mapView)
+                    var radius = (self.findAverage(self.distances)/2)*1e6
+                    if radius > 40000 {
+                        radius = 40000
+                    }
+                    
+                    self.callYelp(business, latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], radius: radius, mapView: self.mapView, markers: self.markers)
+                    
                     while i < len {
-                        if self.distances[i] < 0.05 {
-                            self.callYelp("Restaurants", latitude: self.endCoords.lats[i], longitude: self.endCoords.longs[i], mapView: self.mapView)
+                        
+                        if self.distances[i] < 0.02 {
+                            
+                            self.callYelp(business, latitude: self.endCoords.lats[i], longitude: self.endCoords.longs[i], radius: radius, mapView: self.mapView, markers: self.markers)
                         }
                         else {
+                            
                             let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                            self.callYelp("Restaurants", latitude: midpoint.lat, longitude: midpoint.long, mapView: self.mapView)
-                            if self.distances[i] < 0.1 {
+                            
+                            self.callYelp(business, latitude: midpoint.lat, longitude: midpoint.long, radius: radius, mapView: self.mapView, markers: self.markers)
+                            
+                            if self.distances[i] < 0.05 {
+                                
                                 let midpoint2: (lat: Double, long: Double) = self.findMidpoint(midpoint.long, y1: midpoint.lat, x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                                self.callYelp("Restaurants", latitude: midpoint2.lat, longitude: midpoint2.long, mapView: self.mapView)
                                 let midpoint3: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: midpoint.long, y2: midpoint.lat)
-                                self.callYelp("Restaurants", latitude: midpoint3.lat, longitude: midpoint3.long, mapView: self.mapView)
+                                
+                                self.callYelp(business, latitude: midpoint2.lat, longitude: midpoint2.long, radius: radius, mapView: self.mapView, markers: self.markers)
+                                self.callYelp(business, latitude: midpoint3.lat, longitude: midpoint3.long, radius: radius, mapView: self.mapView, markers: self.markers)
                             }
                             else {
+                                
                                 var startMidpoints: [(lat: Double, long: Double)] = []
                                 var endMidpoints: [(lat: Double, long: Double)] = []
                                 startMidpoints.append(midpoint)
                                 endMidpoints.append(midpoint)
+                                
                                 for j in 1 ... 5 {
+                                    
                                     let startMidpoint: (lat: Double, long: Double) = self.findMidpoint(startMidpoints[j-1].long, y1: startMidpoints[j-1].lat, x2: self.startCoords.longs[i], y2: self.startCoords.lats[i])
                                     let endMidpoint: (lat: Double, long: Double) = self.findMidpoint(endMidpoints[j-1].long, y1: endMidpoints[j-1].lat, x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
                                     startMidpoints.append(startMidpoint)
                                     endMidpoints.append(endMidpoint)
-                                    self.callYelp("Restaurants", latitude: startMidpoint.lat, longitude: startMidpoint.long, mapView: self.mapView)
-                                    self.callYelp("Restaurants", latitude: endMidpoint.lat, longitude: endMidpoint.long, mapView: self.mapView)
+                                    
+                                    self.callYelp(business, latitude: startMidpoint.lat, longitude: startMidpoint.long, radius: radius, mapView: self.mapView, markers: self.markers)
+                                    self.callYelp(business, latitude: endMidpoint.lat, longitude: endMidpoint.long, radius: radius, mapView: self.mapView, markers: self.markers)
                                 }
                             }
                         }
