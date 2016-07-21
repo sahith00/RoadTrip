@@ -35,6 +35,9 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-p6-3TT">
                                 <rect key="frame" x="252" y="179" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wnj-FS-3vw"/>
                                     <constraint firstAttribute="width" constant="97" id="z5J-Ir-z6z"/>
@@ -42,20 +45,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose ending address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsQ-AE-kYn">
-                                <rect key="frame" x="210" y="281" width="181" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose starting address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qT-XIc">
-                                <rect key="frame" x="207" y="109" width="187.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-Vm-uCr">
-                                <rect key="frame" x="251.5" y="378" width="97" height="30"/>
+                                <rect key="frame" x="251.5" y="387" width="97" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="LXn-3a-7HB"/>
                                     <constraint firstAttribute="height" constant="30" id="cSx-Ht-vGa"/>
@@ -63,17 +57,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3W5-va-wJk">
+                                <rect key="frame" x="219" y="281" width="162" height="30"/>
+                                <state key="normal" title="Choose ending address"/>
+                                <connections>
+                                    <action selector="endingAddressClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KGc-8o-t54"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jf5-lK-bFh">
+                                <rect key="frame" x="216" y="103" width="168" height="30"/>
+                                <state key="normal" title="Choose starting address"/>
+                                <connections>
+                                    <action selector="startingAddressClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s83-RV-ikt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qsQ-AE-kYn" firstAttribute="top" secondItem="YVa-p6-3TT" secondAttribute="bottom" constant="72" id="77B-aE-fVr"/>
-                            <constraint firstItem="5vL-Vm-uCr" firstAttribute="top" secondItem="qsQ-AE-kYn" secondAttribute="bottom" constant="76" id="Fun-Ve-DOQ"/>
-                            <constraint firstItem="Nnd-qT-XIc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="HRE-pG-hAm"/>
-                            <constraint firstItem="YVa-p6-3TT" firstAttribute="top" secondItem="Nnd-qT-XIc" secondAttribute="bottom" constant="49" id="HuD-5I-oCM"/>
+                            <constraint firstItem="jf5-lK-bFh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5qE-eC-7WJ"/>
+                            <constraint firstItem="3W5-va-wJk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Eot-0Y-trk"/>
+                            <constraint firstItem="5vL-Vm-uCr" firstAttribute="top" secondItem="3W5-va-wJk" secondAttribute="bottom" constant="76" id="Ewl-Wv-qlt"/>
+                            <constraint firstItem="YVa-p6-3TT" firstAttribute="top" secondItem="jf5-lK-bFh" secondAttribute="bottom" constant="46" id="GZ6-f7-goA"/>
                             <constraint firstItem="5vL-Vm-uCr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wq4-aU-YuP"/>
-                            <constraint firstItem="qsQ-AE-kYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZyF-PX-dUt"/>
-                            <constraint firstItem="Nnd-qT-XIc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bI9-Bf-eBp"/>
                             <constraint firstItem="YVa-p6-3TT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="frQ-1b-heB"/>
+                            <constraint firstItem="3W5-va-wJk" firstAttribute="top" secondItem="YVa-p6-3TT" secondAttribute="bottom" constant="72" id="qTL-gP-NAt"/>
+                            <constraint firstItem="jf5-lK-bFh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="rtQ-7v-vBU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RmE-Sl-G8R">
@@ -84,8 +92,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="endingTextField" destination="5vL-Vm-uCr" id="N1K-QV-7rx"/>
-                        <outlet property="startingTextField" destination="YVa-p6-3TT" id="xix-uN-atQ"/>
+                        <outlet property="endingTextField" destination="5vL-Vm-uCr" id="8Ri-dz-rH2"/>
+                        <outlet property="startingTextField" destination="YVa-p6-3TT" id="Jmw-VZ-JII"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

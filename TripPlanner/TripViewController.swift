@@ -10,9 +10,13 @@ import UIKit
 import GoogleMaps
 
 class TripViewController: UIViewController {
-
+    
+    var acController: GMSAutocompleteViewController?
+    
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
+    
+    var start: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,27 +39,29 @@ class TripViewController: UIViewController {
         }
     }
     
-    @IBAction func onLaunchClicked(sender: AnyObject) {
-        let acController = GMSAutocompleteViewController()
-        acController.delegate = self
-        self.presentViewController(acController, animated: true, completion: nil)
+    @IBAction func startingAddressClicked(sender: AnyObject) {
+        acController = GMSAutocompleteViewController()
+        acController!.delegate = self
+        start = true
+        self.presentViewController(acController!, animated: true, completion: nil)
     }
 
+    @IBAction func endingAddressClicked(sender: AnyObject) {
+        acController = GMSAutocompleteViewController()
+        acController!.delegate = self
+        start = false
+        self.presentViewController(acController!, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -63,9 +69,12 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(viewController: GMSAutocompleteViewController, didAutocompleteWithPlace place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        if start {
+            startingTextField.text = place.formattedAddress
+        }
+        else {
+            endingTextField.text = place.formattedAddress
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

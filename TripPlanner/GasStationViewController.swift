@@ -74,19 +74,19 @@ class GasStationViewController: ViewControllerFunctions {
                     
                     var i = 1
                     let len = self.endCoords.lats.count
-                    self.callYelp("Hotels", latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], mapView: self.mapView)
+                    self.callYelp("Gas Stations", latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], mapView: self.mapView)
                     while i < len {
-                        if self.distances[i] < 0.05 {
-                            self.callYelp("Hotels", latitude: self.endCoords.lats[i], longitude: self.endCoords.longs[i], mapView: self.mapView)
+                        if self.distances[i] < 0.02 {
+                            self.callYelp("Gas Stations", latitude: self.endCoords.lats[i], longitude: self.endCoords.longs[i], mapView: self.mapView)
                         }
                         else {
                             let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                            self.callYelp("Hotels", latitude: midpoint.lat, longitude: midpoint.long, mapView: self.mapView)
-                            if self.distances[i] < 0.1 {
+                            self.callYelp("Gas Stations", latitude: midpoint.lat, longitude: midpoint.long, mapView: self.mapView)
+                            if self.distances[i] < 0.05 {
                                 let midpoint2: (lat: Double, long: Double) = self.findMidpoint(midpoint.long, y1: midpoint.lat, x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
-                                self.callYelp("Hotels", latitude: midpoint2.lat, longitude: midpoint2.long, mapView: self.mapView)
+                                self.callYelp("Gas Stations", latitude: midpoint2.lat, longitude: midpoint2.long, mapView: self.mapView)
                                 let midpoint3: (lat: Double, long: Double) = self.findMidpoint(self.startCoords.longs[i], y1: self.startCoords.lats[i], x2: midpoint.long, y2: midpoint.lat)
-                                self.callYelp("Hotels", latitude: midpoint3.lat, longitude: midpoint3.long, mapView: self.mapView)
+                                self.callYelp("Gas Stations", latitude: midpoint3.lat, longitude: midpoint3.long, mapView: self.mapView)
                             }
                             else {
                                 var startMidpoints: [(lat: Double, long: Double)] = []
@@ -94,13 +94,13 @@ class GasStationViewController: ViewControllerFunctions {
                                 startMidpoints.append(midpoint)
                                 endMidpoints.append(midpoint)
                                 print(startMidpoints, endMidpoints)
-                                for j in 1 ... 4 {
+                                for j in 1 ... 5 {
                                     let startMidpoint: (lat: Double, long: Double) = self.findMidpoint(startMidpoints[j-1].long, y1: startMidpoints[j-1].lat, x2: self.startCoords.longs[i], y2: self.startCoords.lats[i])
                                     let endMidpoint: (lat: Double, long: Double) = self.findMidpoint(endMidpoints[j-1].long, y1: endMidpoints[j-1].lat, x2: self.endCoords.longs[i], y2: self.endCoords.lats[i])
                                     startMidpoints.append(startMidpoint)
                                     endMidpoints.append(endMidpoint)
-                                    self.callYelp("Hotels", latitude: startMidpoint.lat, longitude: startMidpoint.long, mapView: self.mapView)
-                                    self.callYelp("Hotels", latitude: endMidpoint.lat, longitude: endMidpoint.long, mapView: self.mapView)
+                                    self.callYelp("Gas Stations", latitude: startMidpoint.lat, longitude: startMidpoint.long, mapView: self.mapView)
+                                    self.callYelp("Gas Stations", latitude: endMidpoint.lat, longitude: endMidpoint.long, mapView: self.mapView)
                                 }
                             }
                         }
@@ -127,3 +127,4 @@ class GasStationViewController: ViewControllerFunctions {
      */
     
 }
+
