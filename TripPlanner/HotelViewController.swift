@@ -16,6 +16,8 @@ class HotelViewController: ViewControllerFunctions {
 
     @IBOutlet weak var mapView: GMSMapView!
     
+    var address: Address?
+    
     var sensor: Bool?
     var alternatives: Bool?
     var optimized: Bool?
@@ -35,7 +37,9 @@ class HotelViewController: ViewControllerFunctions {
         let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
         let business = "Hotels"
         
-        Alamofire.request(.GET, apiToContact, parameters: ["origin": Address.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": Address.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
+        address = Array(RealmHelper.retrieveAddresses())[0]
+        
+        Alamofire.request(.GET, apiToContact, parameters: ["origin": address!.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": address!.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
                 if let JSON = response.result.value {
                     
@@ -68,8 +72,8 @@ class HotelViewController: ViewControllerFunctions {
                     let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 8)
                     self.mapView.camera = camera
                     
-                    self.createMarker(true, title: Address.startAddress, lat: startCoord.lat, long: startCoord.long, mapView: self.mapView)
-                    self.createMarker(true, title: Address.endAddress, lat: endCoord.lat, long: endCoord.long, mapView: self.mapView)
+                    self.createMarker(true, title: self.address!.startAddress, lat: startCoord.lat, long: startCoord.long, mapView: self.mapView)
+                    self.createMarker(true, title: self.address!.endAddress, lat: endCoord.lat, long: endCoord.long, mapView: self.mapView)
                     self.addDirections(JSON as! [NSObject : AnyObject], mapView: self.mapView)
                     
                     var i = 1

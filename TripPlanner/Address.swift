@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Address {
-    static var startAddress: String = " h    h h h h "
-    static var endAddress: String = " h h h h  h h h h h"
+class Address: Object {
+    dynamic var startAddress: String = " h    h h h h "
+    dynamic var endAddress: String = " h h h h  h h h h h"
 }

@@ -11,10 +11,13 @@ import Foundation
 import Dispatch
 import GoogleMaps
 import Alamofire
+import RealmSwift
 
 class GasStationViewController: ViewControllerFunctions {
     
     @IBOutlet weak var mapView: GMSMapView!
+    
+    var address: Address?
     
     var endCoords: (lats: [Double], longs: [Double]) = ([], [])
     var startCoords: (lats: [Double], longs: [Double]) = ([], [])
@@ -30,7 +33,10 @@ class GasStationViewController: ViewControllerFunctions {
         let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
         let business = "Gas Stations"
         
-        Alamofire.request(.GET, apiToContact, parameters: ["origin": Address.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": Address.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
+        address = Array(RealmHelper.retrieveAddresses())[0]
+        print(Array(RealmHelper.retrieveAddresses()).count)
+        
+        Alamofire.request(.GET, apiToContact, parameters: ["origin": address!.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": address!.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
                 if let JSON = response.result.value {
                     
@@ -63,8 +69,8 @@ class GasStationViewController: ViewControllerFunctions {
                     let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 8)
                     self.mapView.camera = camera
                     
-                    self.createMarker(true, title: Address.startAddress, lat: startCoord.lat, long: startCoord.long, mapView: self.mapView)
-                    self.createMarker(true, title: Address.endAddress, lat: endCoord.lat, long: endCoord.long, mapView: self.mapView)
+                    self.createMarker(true, title: self.address!.startAddress, lat: startCoord.lat, long: startCoord.long, mapView: self.mapView)
+                    self.createMarker(true, title: self.address!.endAddress, lat: endCoord.lat, long: endCoord.long, mapView: self.mapView)
                     self.addDirections(JSON as! [NSObject : AnyObject], mapView: self.mapView)
                     
                     print(self.findAverage(self.distances))

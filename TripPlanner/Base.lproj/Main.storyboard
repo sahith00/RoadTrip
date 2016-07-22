@@ -37,6 +37,7 @@
                                 <rect key="frame" x="252" y="179" width="97" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wnj-FS-3vw"/>
@@ -49,6 +50,7 @@
                                 <rect key="frame" x="251.5" y="387" width="97" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
+                                    <bool key="isElement" value="NO"/>
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="LXn-3a-7HB"/>

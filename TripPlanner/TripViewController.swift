@@ -16,6 +16,8 @@ class TripViewController: UIViewController {
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
     
+    var address: Address = Address()
+    
     var start: Bool = true
     
     override func viewDidLoad() {
@@ -26,17 +28,18 @@ class TripViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if startingTextField.text == "" {
-            Address.startAddress = "Foster City, CA"
+            address.startAddress = "Foster City, CA"
         }
         else {
-            Address.startAddress = startingTextField.text!
+            address.startAddress = startingTextField.text!
         }
         if endingTextField.text == "" {
-            Address.endAddress = "San Francisco, CA"
+            address.endAddress = "San Francisco, CA"
         }
         else {
-            Address.endAddress = endingTextField.text!
+            address.endAddress = endingTextField.text!
         }
+        RealmHelper.addAddress(address)
     }
     
     @IBAction func startingAddressClicked(sender: AnyObject) {
