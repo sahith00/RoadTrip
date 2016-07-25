@@ -1,28 +1,21 @@
 //
-//  RestaurantViewController.swift
+//  MapViewController.swift
 //  TripPlanner
 //
-//  Created by Sahith Bhamidipati on 7/8/16.
+//  Created by Sahith Bhamidipati on 7/25/16.
 //  Copyright © 2016 Sahith Bhamidipati. All rights reserved.
 //
 
-import UIKit
 import Foundation
-import Dispatch
 import GoogleMaps
 import Alamofire
 
-class RestaurantViewController: ViewControllerFunctions {
+class MapViewController: ViewControllerFunctions {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    var address: Address?
+    var address: Address?// = RealmHelper.retrieveLastAddress()
     
-    var sensor: Bool?
-    var alternatives: Bool?
-    var optimized: Bool?
-    var waypoints: [AnyObject]?
-    var waypointStrings: [String]?
     var endCoords: (lats: [Double], longs: [Double]) = ([], [])
     var startCoords: (lats: [Double], longs: [Double]) = ([], [])
     var distances: [Double] = []
@@ -35,9 +28,9 @@ class RestaurantViewController: ViewControllerFunctions {
         // Do any additional setup after loading the view.
         
         let apiToContact = "https://maps.googleapis.com/maps/api/directions/json"
-        let business = "Restaurants"
+        let business = "Gas Stations"
         
-        address = Array(RealmHelper.retrieveAddresses())[0]
+        address = RealmHelper.retrieveLastAddress()
         
         Alamofire.request(.GET, apiToContact, parameters: ["origin": address!.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": address!.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
@@ -69,7 +62,29 @@ class RestaurantViewController: ViewControllerFunctions {
                     let startCoord: (lat:Double, long:Double) = (self.startCoords.lats[0], self.startCoords.longs[0])
                     let endCoord: (lat:Double, long:Double) = (JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lat"]!!.doubleValue, JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lng"]!!.doubleValue)
                     
-                    let camera = GMSCameraPosition.cameraWithLatitude(startCoord.lat, longitude: startCoord.long, zoom: 8)
+                    let distance = self.findDistance(startCoord.long, y1: startCoord.lat, x2: endCoord.long, y2: endCoord.lat)
+                    print(distance)
+                    var zoom: Float = 15
+                    if distance > 10 {
+                        zoom = 2
+                    }
+                    else if distance > 5 {
+                        zoom = 4
+                    }
+                    else if distance > 2 {
+                        zoom = 6
+                    }
+                    else if distance > 1.2 {
+                        zoom = 8
+                    }
+                    else if distance > 0.2 {
+                        zoom = 10
+                    }
+                    else if distance > 0.02 {
+                        zoom = 14
+                    }
+                    let midpoint: (lat: Double, long: Double) = self.findMidpoint(startCoord.long, y1: startCoord.lat, x2: endCoord.long, y2: endCoord.lat)
+                    let camera = GMSCameraPosition.cameraWithLatitude(midpoint.lat, longitude: midpoint.long, zoom: zoom)
                     self.mapView.camera = camera
                     
                     self.createMarker(true, title: self.address!.startAddress, lat: startCoord.lat, long: startCoord.long, mapView: self.mapView)
@@ -78,10 +93,11 @@ class RestaurantViewController: ViewControllerFunctions {
                     
                     var i = 1
                     let len = self.endCoords.lats.count
-                    var radius = (self.findAverage(self.distances)/2)*1e6
+                    var radius = (self.findAverage(self.distances)/4)*1e6
                     if radius > 40000 {
                         radius = 40000
                     }
+                    print(radius)
                     
                     self.callYelp(business, latitude: self.endCoords.lats[0], longitude: self.endCoords.longs[0], radius: radius, mapView: self.mapView, markers: self.markers)
                     
@@ -135,15 +151,14 @@ class RestaurantViewController: ViewControllerFunctions {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

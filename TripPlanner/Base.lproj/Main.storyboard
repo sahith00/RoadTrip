@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVa-p6-3TT">
-                                <rect key="frame" x="252" y="179" width="97" height="30"/>
+                                <rect key="frame" x="251.5" y="179" width="97" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                     <bool key="isElement" value="NO"/>
@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" id="RmE-Sl-G8R">
                         <barButtonItem key="rightBarButtonItem" title="Plan my Trip" id="x0q-Ed-Ivb">
                             <connections>
-                                <segue destination="nc1-y0-BH8" kind="show" id="1pr-15-e5y"/>
+                                <segue destination="wsh-Z0-i5a" kind="show" id="3o4-bP-boK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -102,129 +102,41 @@
             </objects>
             <point key="canvasLocation" x="192" y="312"/>
         </scene>
-        <!--Hotel View Controller-->
-        <scene sceneID="pq2-gE-0y5">
+        <!--Map View Controller-->
+        <scene sceneID="XQ4-75-U6e">
             <objects>
-                <viewController title="Hotel View Controller" id="LiN-kA-NNX" customClass="HotelViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wsh-Z0-i5a" userLabel="Map View Controller" customClass="MapViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pXq-hb-SXH"/>
-                        <viewControllerLayoutGuide type="bottom" id="Jq8-Os-OWi"/>
+                        <viewControllerLayoutGuide type="top" id="K4b-Qh-c77"/>
+                        <viewControllerLayoutGuide type="bottom" id="gT9-69-To6"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bT9-Ec-4FS">
+                    <view key="view" contentMode="scaleToFill" id="g9r-d6-gN1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSJ-Ny-b1T" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="49" width="600" height="502"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9h-Td-p5W" userLabel="Map View" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dSJ-Ny-b1T" secondAttribute="trailing" id="N1z-Fs-csu"/>
-                            <constraint firstItem="Jq8-Os-OWi" firstAttribute="top" secondItem="dSJ-Ny-b1T" secondAttribute="bottom" id="V6S-pl-tAd"/>
-                            <constraint firstItem="dSJ-Ny-b1T" firstAttribute="centerX" secondItem="bT9-Ec-4FS" secondAttribute="centerX" id="hQz-ai-82M"/>
-                            <constraint firstItem="dSJ-Ny-b1T" firstAttribute="centerY" secondItem="bT9-Ec-4FS" secondAttribute="centerY" id="pOa-aE-P0n"/>
-                            <constraint firstItem="dSJ-Ny-b1T" firstAttribute="leading" secondItem="bT9-Ec-4FS" secondAttribute="leading" id="pnI-AZ-ROR"/>
+                            <constraint firstAttribute="trailing" secondItem="N9h-Td-p5W" secondAttribute="trailing" id="6Qa-Oo-w8d"/>
+                            <constraint firstItem="gT9-69-To6" firstAttribute="top" secondItem="N9h-Td-p5W" secondAttribute="bottom" id="GOd-sS-gc5"/>
+                            <constraint firstItem="N9h-Td-p5W" firstAttribute="top" secondItem="K4b-Qh-c77" secondAttribute="bottom" id="Jh8-gJ-yru"/>
+                            <constraint firstItem="N9h-Td-p5W" firstAttribute="leading" secondItem="g9r-d6-gN1" secondAttribute="leading" id="aVg-wB-3xX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hotels" id="gwV-kL-iQ1" userLabel="Hotels"/>
+                    <navigationItem key="navigationItem" title="Title" id="Jwu-xP-R4V">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="6JG-LN-ozB"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="dSJ-Ny-b1T" id="S6q-ak-TPy"/>
+                        <outlet property="mapView" destination="N9h-Td-p5W" id="IK4-S2-3kf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dAh-cg-wpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXz-tg-ku9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1843" y="688"/>
-        </scene>
-        <!--Restaurant View Controller-->
-        <scene sceneID="sI6-aB-ABi">
-            <objects>
-                <viewController title="Restaurant View Controller" id="EdD-V8-gRs" customClass="RestaurantViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="waO-9I-IFf"/>
-                        <viewControllerLayoutGuide type="bottom" id="NMh-o9-RD6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oyf-sQ-Kph">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7o-Hl-Zt2" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="NMh-o9-RD6" firstAttribute="top" secondItem="M7o-Hl-Zt2" secondAttribute="bottom" id="54D-Ew-r9X"/>
-                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="centerX" secondItem="oyf-sQ-Kph" secondAttribute="centerX" id="7IA-ao-Mbh"/>
-                            <constraint firstAttribute="trailing" secondItem="M7o-Hl-Zt2" secondAttribute="trailing" id="9Hn-0S-4iL"/>
-                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="top" secondItem="waO-9I-IFf" secondAttribute="bottom" id="IaC-SZ-BOt"/>
-                            <constraint firstItem="M7o-Hl-Zt2" firstAttribute="leading" secondItem="oyf-sQ-Kph" secondAttribute="leading" id="cEM-sg-7OW"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Restaurants" id="xhi-en-377" userLabel="Restaurants"/>
-                    <connections>
-                        <outlet property="mapView" destination="M7o-Hl-Zt2" id="RgJ-q6-iAj"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v3N-pG-eun" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="952" y="1151"/>
-        </scene>
-        <!--Gas Station View Controller-->
-        <scene sceneID="QEh-nn-A1C">
-            <objects>
-                <viewController title="Gas Station View Controller" id="Eyu-Sj-9kj" customClass="GasStationViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="k8c-UM-rAS"/>
-                        <viewControllerLayoutGuide type="bottom" id="m39-9r-sCL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pTb-He-9fO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-0G-jLu" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5tF-0G-jLu" firstAttribute="leading" secondItem="pTb-He-9fO" secondAttribute="leading" id="5uo-T0-uly"/>
-                            <constraint firstItem="5tF-0G-jLu" firstAttribute="centerX" secondItem="pTb-He-9fO" secondAttribute="centerX" id="EBW-Yb-m20"/>
-                            <constraint firstAttribute="trailing" secondItem="5tF-0G-jLu" secondAttribute="trailing" id="JlQ-n5-8Zc"/>
-                            <constraint firstItem="5tF-0G-jLu" firstAttribute="top" secondItem="k8c-UM-rAS" secondAttribute="bottom" id="Sce-fW-okI"/>
-                            <constraint firstItem="m39-9r-sCL" firstAttribute="top" secondItem="5tF-0G-jLu" secondAttribute="bottom" id="c5s-Zd-VjV"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Gas Stations" id="gfE-jt-1KY" userLabel="Gas Stations"/>
-                    <connections>
-                        <outlet property="mapView" destination="5tF-0G-jLu" id="rIt-gv-jXl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wfv-Xy-cm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1843" y="-90"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="h0c-hJ-vKl">
-            <objects>
-                <tabBarController id="nc1-y0-BH8" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="x8a-z5-mjf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="Eyu-Sj-9kj" kind="relationship" relationship="viewControllers" id="wK6-b3-oJP"/>
-                        <segue destination="LiN-kA-NNX" kind="relationship" relationship="viewControllers" id="oxI-uT-bpn"/>
-                        <segue destination="EdD-V8-gRs" kind="relationship" relationship="viewControllers" id="Qhh-Mo-3Xh"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kN3-lb-uLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="952" y="312"/>
+            <point key="canvasLocation" x="900" y="312"/>
         </scene>
     </scenes>
 </document>

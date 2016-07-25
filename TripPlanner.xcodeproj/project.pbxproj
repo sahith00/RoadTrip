@@ -14,12 +14,10 @@
 		355646AE1D3018CE00168E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355646AD1D3018CE00168E48 /* Assets.xcassets */; };
 		355646B11D3018CE00168E48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 355646AF1D3018CE00168E48 /* LaunchScreen.storyboard */; };
 		355646B91D30276200168E48 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355646B81D30276200168E48 /* TripViewController.swift */; };
-		355646BB1D304D1000168E48 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355646BA1D304D1000168E48 /* HotelViewController.swift */; };
-		355646BE1D304D4400168E48 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355646BD1D304D4400168E48 /* RestaurantViewController.swift */; };
-		355646C01D304D5400168E48 /* GasStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355646BF1D304D5400168E48 /* GasStationViewController.swift */; };
 		358D6B0D1D36F63F004E2791 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D6B0C1D36F63F004E2791 /* Address.swift */; };
 		358D6B0F1D3EE2B9004E2791 /* ViewControllerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */; };
 		358D6B131D429363004E2791 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D6B121D429363004E2791 /* RealmHelper.swift */; };
+		35A875441D46C9D700697953 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A875431D46C9D700697953 /* MapViewController.swift */; };
 		D0C6DCBCBC3CE790CA14E712 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85BACC25D1451B1E02825 /* Pods_TripPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,12 +31,10 @@
 		355646B01D3018CE00168E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		355646B21D3018CE00168E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		355646B81D30276200168E48 /* TripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
-		355646BA1D304D1000168E48 /* HotelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelViewController.swift; sourceTree = "<group>"; };
-		355646BD1D304D4400168E48 /* RestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
-		355646BF1D304D5400168E48 /* GasStationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStationViewController.swift; sourceTree = "<group>"; };
 		358D6B0C1D36F63F004E2791 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFunctions.swift; sourceTree = "<group>"; };
 		358D6B121D429363004E2791 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		35A875431D46C9D700697953 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		502F6EC262F4B1682191E165 /* Pods-TripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripPlanner/Pods-TripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		67C85BACC25D1451B1E02825 /* Pods_TripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B35F79071AD6DCEF7A34EA3 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,11 +96,9 @@
 		355646BC1D304D2600168E48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				355646BF1D304D5400168E48 /* GasStationViewController.swift */,
-				355646BA1D304D1000168E48 /* HotelViewController.swift */,
-				355646BD1D304D4400168E48 /* RestaurantViewController.swift */,
-				358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */,
 				355646B81D30276200168E48 /* TripViewController.swift */,
+				35A875431D46C9D700697953 /* MapViewController.swift */,
+				358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -259,16 +253,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35A875441D46C9D700697953 /* MapViewController.swift in Sources */,
 				355646A71D3018CE00168E48 /* AppDelegate.swift in Sources */,
 				358D6B131D429363004E2791 /* RealmHelper.swift in Sources */,
 				358D6B0F1D3EE2B9004E2791 /* ViewControllerFunctions.swift in Sources */,
 				3513D47E1D3453CD00A2D47D /* Business.swift in Sources */,
-				355646BE1D304D4400168E48 /* RestaurantViewController.swift in Sources */,
-				355646BB1D304D1000168E48 /* HotelViewController.swift in Sources */,
 				355646B91D30276200168E48 /* TripViewController.swift in Sources */,
 				3513D47C1D34535400A2D47D /* YelpClient.swift in Sources */,
 				358D6B0D1D36F63F004E2791 /* Address.swift in Sources */,
-				355646C01D304D5400168E48 /* GasStationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

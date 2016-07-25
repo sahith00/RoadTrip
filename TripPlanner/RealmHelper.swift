@@ -25,16 +25,23 @@ class RealmHelper {
         }
     }
     
+    /*static func updateAddress(oldAddress: Address, newAddress: Address) {
+        let realm = try! Realm()
+        try! realm.write(
+            oldAddress.startAddress = newAddress.startAddress
+            oldAddress.endAddress = newAddress.endAddress
+        )
+    }*/
+    
     static func retrieveAddresses() -> Results<Address> {
         let realm = try! Realm()
         let addresses = realm.objects(Address)
         return addresses
     }
     
-    static func updateTrash() {
-        let realm = try! Realm()
-        try! realm.write() {
-            
-        }
+    static func retrieveLastAddress() -> Address {
+        let addresses = retrieveAddresses()
+        let address = addresses[addresses.count-1] //  addresses.last! // 
+        return address
     }
 }
