@@ -11,37 +11,40 @@ import RealmSwift
 
 class RealmHelper {
     
-    static func addAddress(address: Address) {
+    static func addRoute(route: Route) {
         let realm = try! Realm()
         try! realm.write() {
-            realm.add(address)
+            realm.add(route)
         }
     }
     
-    static func deleteAddress(address: Address) {
+    static func deleteRoute(route: Route) {
         let realm = try! Realm()
         try! realm.write() {
-            realm.delete(address)
+            realm.delete(route)
         }
     }
     
-    /*static func updateAddress(oldAddress: Address, newAddress: Address) {
-        let realm = try! Realm()
-        try! realm.write(
-            oldAddress.startAddress = newAddress.startAddress
-            oldAddress.endAddress = newAddress.endAddress
-        )
-    }*/
-    
-    static func retrieveAddresses() -> Results<Address> {
-        let realm = try! Realm()
-        let addresses = realm.objects(Address)
-        return addresses
+    static func retrieveUniqueRoutes() -> [Route] {
+        let routes = retrieveRoutes()
+        let uniqueRoutes = Array(Set(routes))
+        return uniqueRoutes
     }
     
-    static func retrieveLastAddress() -> Address {
-        let addresses = retrieveAddresses()
-        let address = addresses[addresses.count-1] //  addresses.last! // 
-        return address
+    static func retrieveRoutes() -> Results<Route> {
+        let realm = try! Realm()
+        let routes = realm.objects(Route)
+        return routes
+    }
+    
+    static func retrieveLastRoute() -> Route? {
+        let routes = retrieveRoutes()
+        if routes.count != 0 {
+            let route = routes[routes.count-1]
+            return route
+        }
+        else {
+            return nil
+        }
     }
 }

@@ -10,42 +10,63 @@ import UIKit
 import GoogleMaps
 
 class TripViewController: UIViewController {
-    
+
     var acController: GMSAutocompleteViewController?
+    
+    @IBOutlet weak var recentSearchesTableView: UITableView!
     
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
     
-//    var address: Address = Address()
-    
     var start: Bool = true
+    
+    var num: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        recentSearchesTableView.reloadData()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        num+=1
+    }
+    
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let address: Address = Address()
+        let route: Route = Route()
 
         if startingTextField.text == "" {
-            address.startAddress = "Foster City, CA"
+            if let lastRoute = RealmHelper.retrieveLastRoute() {
+                route.startAddress = lastRoute.startAddress
+            }
+            else {
+                route.startAddress = "Foster City, CA"
+            }
         }
         else {
-            address.startAddress = startingTextField.text!
+            route.startAddress = startingTextField.text!
         }
         if endingTextField.text == "" {
-            address.endAddress = "San Francisco, CA"
+            if let lastRoute = RealmHelper.retrieveLastRoute() {
+                route.endAddress = lastRoute.endAddress
+            }
+            else {
+                route.endAddress = "San Francisco, CA"
+            }
         }
         else {
-            address.endAddress = endingTextField.text!
+            route.endAddress = endingTextField.text!
         }
-        print(address.startAddress)
-        print(address.endAddress)
-        RealmHelper.addAddress(address)
+        print(route.startAddress)
+        print(route.endAddress)
+        RealmHelper.addRoute(route)
         
-        print(RealmHelper.retrieveAddresses())
+        //print(RealmHelper.retrieveRoutes())
     }
     
     @IBAction func startingAddressClicked(sender: AnyObject) {
@@ -97,5 +118,33 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     func wasCancelled(viewController: GMSAutocompleteViewController) {
         print("Autocomplete was cancelled.")
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension TripViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if RealmHelper.retrieveRoutes().count > 5 {
+            return 5
+        }
+        else {
+            return RealmHelper.retrieveRoutes().count
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! RecentSearchesTableViewCell
+        cell.recentSearchLabel.text = RealmHelper.retrieveUniqueRoutes()[RealmHelper.retrieveUniqueRoutes().count-indexPath.row-1].startAddress ?? "Foster City, CA"
+        print(RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-indexPath.row-1].startAddress)
+        return cell
+    }
+}
+
+extension TripViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        startingTextField.text = RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-indexPath.row-num].startAddress
+        print(RealmHelper.retrieveRoutes().count-indexPath.row-num)
+        print(num)
+        print(RealmHelper.retrieveRoutes())
     }
 }

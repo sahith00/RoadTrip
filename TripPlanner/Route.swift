@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Address: Object {
+class Route: Object {
     dynamic var startAddress: String = " h    h h h h "
     dynamic var endAddress: String = " h h h h  h h h h h"
 }

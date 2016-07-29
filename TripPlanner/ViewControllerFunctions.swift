@@ -26,13 +26,6 @@ class ViewControllerFunctions: UIViewController {
         return marker
     }
     
-    func createMarkerAtTap(didTapAtCoordinate coordinate: CLLocationCoordinate2D, title: String, mapView: GMSMapView) {
-        let marker = GMSMarker()
-        marker.position.latitude = coordinate.latitude
-        marker.position.longitude = coordinate.longitude
-        marker.map = mapView
-    }
-    
     func createPath(route: String, mapView: GMSMapView) {
         let path: GMSPath = GMSPath(fromEncodedPath: route)!
         
@@ -40,13 +33,6 @@ class ViewControllerFunctions: UIViewController {
         polyline.strokeColor = UIColor.blueColor()
         polyline.strokeWidth = 5.0
         polyline.map = mapView
-    }
-    
-    func addDirections(json: [NSObject : AnyObject], mapView: GMSMapView) {
-        let routes: [NSObject : AnyObject] = (json["routes"]![0] as! [NSObject : AnyObject])
-        let route: [NSObject : AnyObject] = (routes["overview_polyline"] as! [NSObject : AnyObject])
-        let overview_route: String = (route["points"] as! String)
-        createPath(overview_route, mapView: mapView)
     }
     
     func convertPointsToEncodedPath(points: [AnyObject]) -> String{
@@ -82,14 +68,13 @@ class ViewControllerFunctions: UIViewController {
         return(sum/Double(arr.count))
     }
     
-    func callYelp(business: String, latitude: Double, longitude: Double, radius: Double, mapView: GMSMapView, var markers: [GMSMarker]) {
+    func callYelp(business: String, places: (names: [String], lats: [Double], longs: [Double]), latitude: Double, longitude: Double, radius: Double, mapView: GMSMapView){
         YelpClient.sharedInstance.searchWithTerm(business, lat: latitude, long: longitude, radius: radius, completion: { (businesses, error) in
             if businesses != nil {
                 for business in businesses {
                     if let lat = business.lat {
                         if let long = business.long {
-                            let marker: GMSMarker = self.createMarker(false, title: business.name!, lat: lat, long: long, mapView:mapView)
-                            markers.append(marker)
+                            self.createMarker(false, title: business.name!, lat: lat, long: long, mapView: mapView)
                         }
                     }
                 }
