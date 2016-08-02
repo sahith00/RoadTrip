@@ -9,6 +9,7 @@
 import Foundation
 import GoogleMaps
 import Alamofire
+import SwiftyJSON
 
 class MapViewController: ViewControllerFunctions {
     
@@ -40,27 +41,28 @@ class MapViewController: ViewControllerFunctions {
         
         Alamofire.request(.GET, apiToContact, parameters: ["origin": route!.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": route!.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
-                if let JSON = response.result.value {
+                if let value = response.result.value {
                     
-                    let routes: [NSObject : AnyObject] = (JSON["routes"]!![0] as! [NSObject : AnyObject])
-                    let route: [NSObject : AnyObject] = (routes["overview_polyline"] as! [NSObject : AnyObject])
-                    self.overviewRoute = (route["points"] as! String)
+                    let json = JSON(value)
+                    let routes = json["routes"][0]
+                    let route = routes["overview_polyline"]
+                    self.overviewRoute = (route["points"].string)
                     
-                    let count = JSON["routes"]!![0]["legs"]!![0]["steps"]!?.count
+                    let count = json["routes"][0]["legs"][0]["steps"].count
                     
                     var index = 0
                     
                     while index < count {
-                        let routes = JSON["routes"] as! [AnyObject]
+                        let routes = json["routes"]
                         let route = routes[0]
-                        let legs = route["legs"] as! [AnyObject]
+                        let legs = route["legs"]
                         let leg = legs[0]
-                        let steps = leg["steps"] as! [AnyObject]
+                        let steps = leg["steps"]
                         let step = steps[index]
-                        let endLat = step["end_location"]!!["lat"]!!
-                        let endLong = step["end_location"]!!["lng"]!!
-                        let startLat = step["start_location"]!!["lat"]!!
-                        let startLong = step["start_location"]!!["lng"]!!
+                        let endLat = step["end_location"]["lat"]
+                        let endLong = step["end_location"]["lng"]
+                        let startLat = step["start_location"]["lat"]
+                        let startLong = step["start_location"]["lng"]
                         self.endCoords.lats.append(endLat.doubleValue)
                         self.endCoords.longs.append(endLong.doubleValue)
                         self.startCoords.lats.append(startLat.doubleValue)
@@ -70,56 +72,35 @@ class MapViewController: ViewControllerFunctions {
                     }
                     
                     self.startCoord = (self.startCoords.lats[0], self.startCoords.longs[0])
-                    self.endCoord = (JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lat"]!!.doubleValue, JSON["routes"]!![0]["legs"]!![0]["end_location"]!!["lng"]!!.doubleValue)
+                    self.endCoord = (json["routes"][0]["legs"][0]["end_location"]["lat"].doubleValue, json["routes"][0]["legs"][0]["end_location"]["lng"].doubleValue)
                     
-                    let distance = self.findDistance(self.startCoord.long, y1: self.startCoord.lat, x2: self.endCoord.long, y2: self.endCoord.lat)
-                    //print(distance)
-                    var zoom: Float = 15
-                    if distance > 10 {
-                        zoom = 3
-                    }
-                    else if distance > 5 {
-                        zoom = 4
-                    }
-                    else if distance > 2 {
-                        zoom = 6
-                    }
-                    else if distance > 1.2 {
-                        zoom = 8
-                    }
-                    else if distance > 0.2 {
-                        zoom = 10
-                    }
-                    else if distance > 0.02 {
-                        zoom = 14
-                    }
-                    let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoord.long, y1: self.startCoord.lat, x2: self.endCoord.long, y2: self.endCoord.lat)
-                    let camera = GMSCameraPosition.cameraWithLatitude(midpoint.lat, longitude: midpoint.long, zoom: zoom)
-                    self.mapView.camera = camera
-                    
+                    self.setCamera()
                     self.showRoute()
                 }
         }
     }
     
     @IBAction func businessSelect(sender: AnyObject) {
-        let alertController = UIAlertController(title: nil, message: "Test", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: "", preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let gasStationAction = UIAlertAction(title: "Gas Stations", style: .Default) { (action) in
             self.mapView.clear()
             self.showRoute()
             self.callFullYelp("Gas Stations", type: self.gasStations)
+            self.setCamera()
         }
         let hotelAction = UIAlertAction(title: "Hotels", style: .Default) { (action) in
             self.mapView.clear()
             self.showRoute()
             self.callFullYelp("Hotels", type: self.hotels)
+            self.setCamera()
         }
         let restaurantAction = UIAlertAction(title: "Restaurants", style: .Default) { (action) in
             self.mapView.clear()
             self.showRoute()
             self.callFullYelp("Restaurants", type: self.restaurants)
+            self.setCamera()
         }
         
         alertController.addAction(cancelAction)
@@ -130,9 +111,35 @@ class MapViewController: ViewControllerFunctions {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func setCamera() {
+        let distance = self.findDistance(self.startCoord.long, y1: self.startCoord.lat, x2: self.endCoord.long, y2: self.endCoord.lat)
+        var zoom: Float = 15
+        if distance > 10 {
+            zoom = 3
+        }
+        else if distance > 5 {
+            zoom = 4
+        }
+        else if distance > 2 {
+            zoom = 6
+        }
+        else if distance > 1.2 {
+            zoom = 8
+        }
+        else if distance > 0.2 {
+            zoom = 10
+        }
+        else if distance > 0.02 {
+            zoom = 14
+        }
+        let midpoint: (lat: Double, long: Double) = self.findMidpoint(self.startCoord.long, y1: self.startCoord.lat, x2: self.endCoord.long, y2: self.endCoord.lat)
+        let camera = GMSCameraPosition.cameraWithLatitude(midpoint.lat, longitude: midpoint.long, zoom: zoom)
+        self.mapView.camera = camera
+    }
+    
     func showRoute() {
-        self.createMarker(true, title: self.route!.startAddress, lat: self.startCoord.lat, long: self.startCoord.long, mapView: self.mapView)
-        self.createMarker(true, title: self.route!.endAddress, lat: self.endCoord.lat, long: self.endCoord.long, mapView: self.mapView)
+        self.createMarker(true, title: self.route!.startAddress, rating: nil, lat: self.startCoord.lat, long: self.startCoord.long, mapView: self.mapView)
+        self.createMarker(true, title: self.route!.endAddress, rating: nil, lat: self.endCoord.lat, long: self.endCoord.long, mapView: self.mapView)
         self.createPath(self.overviewRoute!, mapView: self.mapView)
     }
     

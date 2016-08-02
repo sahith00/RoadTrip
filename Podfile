@@ -6,11 +6,13 @@ target 'TripPlanner' do
   use_frameworks!
 	source 'https://github.com/CocoaPods/Specs.git'
   # Pods for TripPlanner
-	pod 'GoogleMaps'
+	pod 'GoogleMaps', '~> 1.13.2'
     pod 'AFNetworking'
     pod 'BDBOAuth1Manager', '~> 1.6'
     pod 'Alamofire'
     pod 'AlamofireImage'
     pod 'AlamofireNetworkActivityIndicator'
     pod 'RealmSwift'
+    pod 'SwiftyJSON'
+
 end

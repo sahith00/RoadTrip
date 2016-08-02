@@ -34,6 +34,7 @@ PODS:
   - Realm/Headers (1.0.2)
   - RealmSwift (1.0.2):
     - Realm (= 1.0.2)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -41,8 +42,9 @@ DEPENDENCIES:
   - AlamofireImage
   - AlamofireNetworkActivityIndicator
   - BDBOAuth1Manager (~> 1.6)
-  - GoogleMaps
+  - GoogleMaps (~> 1.13.2)
   - RealmSwift
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -53,7 +55,8 @@ SPEC CHECKSUMS:
   GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
   RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: e60a47093451d529bc77176ed8fd476c010d9c15
+PODFILE CHECKSUM: f61e45a95e85cb23ea551530d30acc3e4fd7453d
 
 COCOAPODS: 1.0.1

@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import RealmSwift
 
 class TripViewController: UIViewController {
 
@@ -18,25 +19,23 @@ class TripViewController: UIViewController {
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
     
-    var start: Bool = true
+    var acstart: Bool = true
+    var tablestart: Bool = true
     
-    var num: Int = 0
+    var cellText: [String] = ["", "", "", "", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        recentSearchesTableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        num+=1
+        recentSearchesTableView.reloadData()
     }
     
-    
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let route: Route = Route()
 
@@ -62,27 +61,55 @@ class TripViewController: UIViewController {
         else {
             route.endAddress = endingTextField.text!
         }
-        print(route.startAddress)
-        print(route.endAddress)
         RealmHelper.addRoute(route)
-        
-        //print(RealmHelper.retrieveRoutes())
+        loadRecentSearches(tablestart)
     }
     
     @IBAction func startingAddressClicked(sender: AnyObject) {
         acController = GMSAutocompleteViewController()
         acController!.delegate = self
-        start = true
+        acstart = true
         self.presentViewController(acController!, animated: true, completion: nil)
     }
 
     @IBAction func endingAddressClicked(sender: AnyObject) {
         acController = GMSAutocompleteViewController()
         acController!.delegate = self
-        start = false
+        acstart = false
         self.presentViewController(acController!, animated: true, completion: nil)
     }
     
+    @IBAction func startingFieldClicked(sender: AnyObject) {
+        print("Start clicked")
+        loadRecentSearches(true)
+    }
+    
+    @IBAction func endingFieldClicked(sender: AnyObject) {
+        print("End clicked")
+        loadRecentSearches(false)
+    }
+    
+    func loadRecentSearches(start: Bool) {
+        if RealmHelper.retrieveRoutes().count != 0{
+            var count = 5
+            //print(RealmHelper.retrieveRoutes().count)
+            if RealmHelper.retrieveRoutes().count < 5 {
+                count = RealmHelper.retrieveRoutes().count
+            }
+            for i in 0 ..< count {
+                if start {
+                    cellText[i] = RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-i-1].startAddress
+                }
+                else {
+                    cellText[i] = RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-i-1].endAddress
+                }
+            }
+        }
+        recentSearchesTableView.reloadData()
+        tablestart = start
+    }
+    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -99,11 +126,13 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(viewController: GMSAutocompleteViewController, didAutocompleteWithPlace place: GMSPlace) {
-        if start {
+        if acstart {
             startingTextField.text = place.formattedAddress
+            loadRecentSearches(true)
         }
         else {
             endingTextField.text = place.formattedAddress
+            loadRecentSearches(false)
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -117,6 +146,12 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
     // User canceled the operation.
     func wasCancelled(viewController: GMSAutocompleteViewController) {
         print("Autocomplete was cancelled.")
+        if acstart {
+            loadRecentSearches(true)
+        }
+        else {
+            loadRecentSearches(false)
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
@@ -134,17 +169,18 @@ extension TripViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! RecentSearchesTableViewCell
-        cell.recentSearchLabel.text = RealmHelper.retrieveUniqueRoutes()[RealmHelper.retrieveUniqueRoutes().count-indexPath.row-1].startAddress ?? "Foster City, CA"
-        print(RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-indexPath.row-1].startAddress)
+        cell.recentSearchLabel.text = cellText[indexPath.row]
         return cell
     }
 }
 
 extension TripViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        startingTextField.text = RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-indexPath.row-num].startAddress
-        print(RealmHelper.retrieveRoutes().count-indexPath.row-num)
-        print(num)
-        print(RealmHelper.retrieveRoutes())
+        if tablestart {
+            startingTextField.text = RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-indexPath.row-1].startAddress
+        }
+        else {
+            endingTextField.text = RealmHelper.retrieveRoutes()[RealmHelper.retrieveRoutes().count-indexPath.row-1].endAddress
+        }
     }
 }

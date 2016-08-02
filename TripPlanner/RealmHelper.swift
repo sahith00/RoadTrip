@@ -26,9 +26,20 @@ class RealmHelper {
     }
     
     static func retrieveUniqueRoutes() -> [Route] {
-        let routes = retrieveRoutes()
-        let uniqueRoutes = Array(Set(routes))
-        return uniqueRoutes
+        let routes: Results<Route> = RealmHelper.retrieveRoutes()
+        var ans: [Route] = []
+        ans.append(routes[0])
+        for route in routes {
+            for j in 0..<ans.count {
+                if route.startAddress == ans[j].startAddress {
+                    break
+                }
+                else {
+                    ans.append(route)
+                }
+            }
+        }
+        return ans
     }
     
     static func retrieveRoutes() -> Results<Route> {

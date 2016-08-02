@@ -11,8 +11,9 @@ import GoogleMaps
 
 class ViewControllerFunctions: UIViewController {
     
-    func createMarker(isDestinationMarker: Bool, title: String, lat: Double, long: Double, mapView: GMSMapView) -> GMSMarker{
+    func createMarker(isDestinationMarker: Bool, title: String, rating: Double?, lat: Double, long: Double, mapView: GMSMapView) -> GMSMarker{
         let marker = GMSMarker()
+        marker.draggable = true
         let geocoder = GMSGeocoder()
         marker.position = CLLocationCoordinate2DMake(lat, long)
         if isDestinationMarker {
@@ -20,7 +21,12 @@ class ViewControllerFunctions: UIViewController {
         }
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
             marker.title = title
-            marker.snippet = response?.firstResult()?.locality
+            if let rating = rating {
+                marker.snippet = "Rating: "+String(rating)+"/5"
+            }
+            else {
+                marker.snippet = response?.firstResult()?.locality
+            }
         }
         marker.map = mapView
         return marker
@@ -33,18 +39,6 @@ class ViewControllerFunctions: UIViewController {
         polyline.strokeColor = UIColor.blueColor()
         polyline.strokeWidth = 5.0
         polyline.map = mapView
-    }
-    
-    func convertPointsToEncodedPath(points: [AnyObject]) -> String{
-        var ans: String = ""
-        //print(points)
-        print(points.count)
-        print(points[0] as! String)
-        for point in points {
-            let strpoint = point as! String
-            ans += strpoint
-        }
-        return ans
     }
     
     func findDistance(x1: Double, y1: Double, x2: Double, y2: Double) -> Double{
@@ -74,12 +68,11 @@ class ViewControllerFunctions: UIViewController {
                 for business in businesses {
                     if let lat = business.lat {
                         if let long = business.long {
-                            self.createMarker(false, title: business.name!, lat: lat, long: long, mapView: mapView)
+                            self.createMarker(false, title: business.name!, rating: business.rating, lat: lat, long: long, mapView: mapView)
                         }
                     }
                 }
             }
         })
     }
-
 }

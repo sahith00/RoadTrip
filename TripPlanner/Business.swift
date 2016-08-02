@@ -16,6 +16,7 @@ class Business: NSObject {
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
+    let rating: Double?
     let reviewCount: NSNumber?
     let lat:CLLocationDegrees?
     let long:CLLocationDegrees?
@@ -87,6 +88,8 @@ class Business: NSObject {
         } else {
             ratingImageURL = nil
         }
+        rating = dictionary["rating"] as? Double
+        
         
         reviewCount = dictionary["review_count"] as? NSNumber
         
