@@ -36,6 +36,11 @@ class TripViewController: UIViewController {
         super.viewWillAppear(animated)
         
         recentSearchesTableView.reloadData()
+        self.navigationController?.navigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -65,6 +70,7 @@ class TripViewController: UIViewController {
         }
         RealmHelper.addRoute(route)
         loadRecentSearches(tablestart)
+        self.navigationController?.navigationBarHidden = false
     }
     
     @IBAction func startingFieldClicked(sender: AnyObject) {

@@ -10,6 +10,7 @@
         <scene sceneID="iOz-Ai-70k">
             <objects>
                 <navigationController id="uzc-8M-WQd" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EF3-Fa-3jD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -31,42 +32,75 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ending Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnb-zW-05D">
-                                <rect key="frame" x="20" y="197" width="560" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwy-UV-r3X">
+                                <rect key="frame" x="124" y="84" width="127" height="28"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvO-G2-b7s">
+                                <rect key="frame" x="16" y="149" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="startingFieldClicked:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="1L1-mt-Xix"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1v-5k-yFw">
+                                <rect key="frame" x="16" y="166" width="343" height="1"/>
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="t9S-bs-OFk"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnb-zW-05D">
+                                <rect key="frame" x="16" y="186" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="endingFieldClicked:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="ceP-bp-sEH"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjp-ib-udq">
+                                <rect key="frame" x="16" y="203" width="343" height="1"/>
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="3Z8-7w-uos"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gv-8d-KI9">
+                                <rect key="frame" x="114" y="365" width="146.5" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="taj-z1-QmP">
-                                <rect key="frame" x="20" y="356" width="560" height="244"/>
+                                <rect key="frame" x="0.0" y="423" width="375" height="244"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="244" id="zNj-si-dfL"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchCell" id="3L4-x1-0dT" customClass="RecentSearchesTableViewCell" customModule="TripPlanner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3L4-x1-0dT" id="2Pf-m0-yjF">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkq-GS-yFw">
-                                                    <rect key="frame" x="0.0" y="11" width="560" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="359" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Jkq-GS-yFw" secondAttribute="trailing" id="4FY-Oi-zfD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Jkq-GS-yFw" secondAttribute="trailing" id="Cmh-GE-1eg"/>
+                                                <constraint firstItem="Jkq-GS-yFw" firstAttribute="leading" secondItem="2Pf-m0-yjF" secondAttribute="leadingMargin" id="TEg-QT-4CR"/>
                                                 <constraint firstItem="Jkq-GS-yFw" firstAttribute="centerY" secondItem="2Pf-m0-yjF" secondAttribute="centerY" id="atg-jp-BSA"/>
-                                                <constraint firstItem="Jkq-GS-yFw" firstAttribute="leading" secondItem="2Pf-m0-yjF" secondAttribute="leading" id="h2k-x5-uAT"/>
                                                 <constraint firstItem="Jkq-GS-yFw" firstAttribute="centerX" secondItem="2Pf-m0-yjF" secondAttribute="centerX" id="rqP-A5-CsZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -80,51 +114,41 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="r68-dW-Mwh"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Route" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwy-UV-r3X">
-                                <rect key="frame" x="233" y="84" width="133" height="25.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gv-8d-KI9">
-                                <rect key="frame" x="221" y="300" width="158.5" height="25.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Starting Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvO-G2-b7s">
-                                <rect key="frame" x="20" y="147" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuo-cs-NXX">
+                                <rect key="frame" x="150.5" y="227" width="74" height="30"/>
+                                <state key="normal" title="Plan Route"/>
                                 <connections>
-                                    <action selector="startingFieldClicked:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="1L1-mt-Xix"/>
+                                    <segue destination="wsh-Z0-i5a" kind="show" id="xfR-O2-lCi"/>
                                 </connections>
-                            </textField>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.81960784313725488" green="0.93333333333333335" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="taj-z1-QmP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="616-1Q-Ehk"/>
                             <constraint firstItem="nnb-zW-05D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7UA-bB-bps"/>
                             <constraint firstItem="dvO-G2-b7s" firstAttribute="top" secondItem="qwy-UV-r3X" secondAttribute="bottom" constant="37.5" id="7d5-68-zZM"/>
+                            <constraint firstItem="g1v-5k-yFw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="8Tb-md-lFd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nnb-zW-05D" secondAttribute="trailing" id="E8X-qH-eKQ"/>
-                            <constraint firstItem="taj-z1-QmP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gu0-E7-wFZ"/>
+                            <constraint firstItem="kjp-ib-udq" firstAttribute="top" secondItem="nnb-zW-05D" secondAttribute="bottom" id="Gjb-s9-eT9"/>
                             <constraint firstItem="nnb-zW-05D" firstAttribute="top" secondItem="dvO-G2-b7s" secondAttribute="bottom" constant="20" id="HRk-lP-Y7Z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dvO-G2-b7s" secondAttribute="trailing" id="IJU-2b-tmR"/>
                             <constraint firstItem="qwy-UV-r3X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Iq7-6a-hbr"/>
+                            <constraint firstAttribute="trailing" secondItem="taj-z1-QmP" secondAttribute="trailing" id="Iz7-vg-WAC"/>
                             <constraint firstItem="dvO-G2-b7s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PJE-nC-9bv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="taj-z1-QmP" secondAttribute="trailing" id="RRK-wW-1Wi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g1v-5k-yFw" secondAttribute="trailing" id="RYv-9o-KNs"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="taj-z1-QmP" secondAttribute="bottom" id="Vm6-Ib-7SU"/>
+                            <constraint firstItem="Yuo-cs-NXX" firstAttribute="top" secondItem="kjp-ib-udq" secondAttribute="bottom" constant="23" id="XIf-vA-T7E"/>
+                            <constraint firstItem="g1v-5k-yFw" firstAttribute="top" secondItem="dvO-G2-b7s" secondAttribute="bottom" id="XzZ-5j-y6K"/>
                             <constraint firstItem="taj-z1-QmP" firstAttribute="top" secondItem="7Gv-8d-KI9" secondAttribute="bottom" constant="30.5" id="aUL-M9-MVK"/>
+                            <constraint firstItem="Yuo-cs-NXX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iAk-c0-QKl"/>
                             <constraint firstItem="7Gv-8d-KI9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jTx-au-OM4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kjp-ib-udq" secondAttribute="trailing" id="kTX-Gk-bRb"/>
+                            <constraint firstItem="kjp-ib-udq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="umn-FC-aRe"/>
                             <constraint firstItem="qwy-UV-r3X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="zEb-YM-YbE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RmE-Sl-G8R">
-                        <barButtonItem key="rightBarButtonItem" title="Plan my Trip" id="x0q-Ed-Ivb">
-                            <connections>
-                                <segue destination="wsh-Z0-i5a" kind="show" id="3o4-bP-boK"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="RmE-Sl-G8R" userLabel="Choose Route"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="endingTextField" destination="nnb-zW-05D" id="Y4u-Jq-kKl"/>
                         <outlet property="recentSearchesTableView" destination="taj-z1-QmP" id="FHQ-8t-fub"/>
@@ -133,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="192" y="312"/>
+            <point key="canvasLocation" x="191.5" y="311.5"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="XQ4-75-U6e">
@@ -144,11 +168,11 @@
                         <viewControllerLayoutGuide type="bottom" id="gT9-69-To6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="g9r-d6-gN1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9h-Td-p5W" userLabel="Map View" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -162,11 +186,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Your Trip" id="Jwu-xP-R4V">
                         <barButtonItem key="rightBarButtonItem" title="Business" id="6JG-LN-ozB">
+                            <color key="tintColor" red="0.32549019610000002" green="0.6588235294" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="businessSelect:" destination="wsh-Z0-i5a" id="kRh-ps-AT7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="businessSelector" destination="6JG-LN-ozB" id="xnF-Rk-4Pt"/>
                         <outlet property="mapView" destination="N9h-Td-p5W" id="Zfu-vp-jOq"/>
@@ -174,7 +200,8 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXz-tg-ku9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="312"/>
+            <point key="canvasLocation" x="681.5" y="311.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32549019610000002" green="0.6588235294" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
 </document>

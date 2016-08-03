@@ -94,7 +94,7 @@ class MapViewController: ViewControllerFunctions {
         let alertController = UIAlertController(title: nil, message: "", preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        let gasStationAction = UIAlertAction(title: "Gas Stations", style: .Default) { (action) in
+        let gasStationAction = UIAlertAction(title: "Auto Services", style: .Default) { (action) in
             if self.currentBusiness != "Gas Stations" {
                 self.mapView.clear()
                 self.showRoute()

@@ -87,8 +87,8 @@
 				358D6B101D429007004E2791 /* Models */,
 				355646BC1D304D2600168E48 /* Views */,
 				355646A61D3018CE00168E48 /* AppDelegate.swift */,
-				355646AA1D3018CE00168E48 /* Main.storyboard */,
 				3587EB121D497D9900A5DD27 /* RecentSearchesTableViewCell.swift */,
+				355646AA1D3018CE00168E48 /* Main.storyboard */,
 				355646AD1D3018CE00168E48 /* Assets.xcassets */,
 				355646AF1D3018CE00168E48 /* LaunchScreen.storyboard */,
 				355646B21D3018CE00168E48 /* Info.plist */,
@@ -168,7 +168,7 @@
 				TargetAttributes = {
 					355646A21D3018CE00168E48 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 4J6V7599DE;
+						DevelopmentTeam = VB7SET62WV;
 					};
 				};
 			};
