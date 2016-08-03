@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -33,30 +34,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97y-5f-La8">
-                                <rect key="frame" x="0.0" y="71" width="560" height="30"/>
-                                <state key="normal" title="Choose Ending Address"/>
-                                <connections>
-                                    <action selector="endingAddressClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DCl-pd-d6Q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9k-36-7Do">
-                                <rect key="frame" x="0.0" y="97" width="560" height="30"/>
-                                <state key="normal" title="Choose Starting Address"/>
-                                <connections>
-                                    <action selector="startingAddressClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f6l-8z-R2X"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Starting Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvO-G2-b7s">
-                                <rect key="frame" x="0.0" y="187" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="startingFieldClicked:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="1L1-mt-Xix"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ending Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnb-zW-05D">
-                                <rect key="frame" x="0.0" y="135" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ending Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nnb-zW-05D">
+                                <rect key="frame" x="20" y="197" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -64,21 +43,21 @@
                                 </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="taj-z1-QmP">
-                                <rect key="frame" x="0.0" y="256" width="600" height="344"/>
+                                <rect key="frame" x="20" y="356" width="560" height="244"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="344" id="c7I-6A-0mF"/>
+                                    <constraint firstAttribute="height" constant="244" id="zNj-si-dfL"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchCell" id="3L4-x1-0dT" customClass="RecentSearchesTableViewCell" customModule="TripPlanner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3L4-x1-0dT" id="2Pf-m0-yjF">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkq-GS-yFw">
-                                                    <rect key="frame" x="0.0" y="11" width="600" height="21"/>
+                                                    <rect key="frame" x="0.0" y="11" width="560" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -101,12 +80,42 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="r68-dW-Mwh"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Route" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwy-UV-r3X">
+                                <rect key="frame" x="233" y="84" width="133" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gv-8d-KI9">
+                                <rect key="frame" x="221" y="300" width="158.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Starting Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvO-G2-b7s">
+                                <rect key="frame" x="20" y="147" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="startingFieldClicked:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="1L1-mt-Xix"/>
+                                </connections>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.81960784313725488" green="0.93333333333333335" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="taj-z1-QmP" secondAttribute="trailing" id="8WS-kM-Jr0"/>
+                            <constraint firstItem="nnb-zW-05D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7UA-bB-bps"/>
+                            <constraint firstItem="dvO-G2-b7s" firstAttribute="top" secondItem="qwy-UV-r3X" secondAttribute="bottom" constant="37.5" id="7d5-68-zZM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nnb-zW-05D" secondAttribute="trailing" id="E8X-qH-eKQ"/>
+                            <constraint firstItem="taj-z1-QmP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gu0-E7-wFZ"/>
+                            <constraint firstItem="nnb-zW-05D" firstAttribute="top" secondItem="dvO-G2-b7s" secondAttribute="bottom" constant="20" id="HRk-lP-Y7Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dvO-G2-b7s" secondAttribute="trailing" id="IJU-2b-tmR"/>
+                            <constraint firstItem="qwy-UV-r3X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Iq7-6a-hbr"/>
+                            <constraint firstItem="dvO-G2-b7s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PJE-nC-9bv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="taj-z1-QmP" secondAttribute="trailing" id="RRK-wW-1Wi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="taj-z1-QmP" secondAttribute="bottom" id="Vm6-Ib-7SU"/>
-                            <constraint firstItem="taj-z1-QmP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eyq-6u-wTQ"/>
+                            <constraint firstItem="taj-z1-QmP" firstAttribute="top" secondItem="7Gv-8d-KI9" secondAttribute="bottom" constant="30.5" id="aUL-M9-MVK"/>
+                            <constraint firstItem="7Gv-8d-KI9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jTx-au-OM4"/>
+                            <constraint firstItem="qwy-UV-r3X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="zEb-YM-YbE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RmE-Sl-G8R">
@@ -151,8 +160,8 @@
                             <constraint firstItem="N9h-Td-p5W" firstAttribute="leading" secondItem="g9r-d6-gN1" secondAttribute="leading" id="aVg-wB-3xX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Jwu-xP-R4V">
-                        <barButtonItem key="rightBarButtonItem" title="Choose Business" id="6JG-LN-ozB">
+                    <navigationItem key="navigationItem" title="Your Trip" id="Jwu-xP-R4V">
+                        <barButtonItem key="rightBarButtonItem" title="Business" id="6JG-LN-ozB">
                             <connections>
                                 <action selector="businessSelect:" destination="wsh-Z0-i5a" id="kRh-ps-AT7"/>
                             </connections>

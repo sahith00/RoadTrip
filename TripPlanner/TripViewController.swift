@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import RealmSwift
+import Foundation
 
 class TripViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class TripViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loadRecentSearches(true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,27 +67,21 @@ class TripViewController: UIViewController {
         loadRecentSearches(tablestart)
     }
     
-    @IBAction func startingAddressClicked(sender: AnyObject) {
+    @IBAction func startingFieldClicked(sender: AnyObject) {
+        print("Start clicked")
         acController = GMSAutocompleteViewController()
         acController!.delegate = self
         acstart = true
         self.presentViewController(acController!, animated: true, completion: nil)
-    }
-
-    @IBAction func endingAddressClicked(sender: AnyObject) {
-        acController = GMSAutocompleteViewController()
-        acController!.delegate = self
-        acstart = false
-        self.presentViewController(acController!, animated: true, completion: nil)
-    }
-    
-    @IBAction func startingFieldClicked(sender: AnyObject) {
-        print("Start clicked")
         loadRecentSearches(true)
     }
     
     @IBAction func endingFieldClicked(sender: AnyObject) {
         print("End clicked")
+        acController = GMSAutocompleteViewController()
+        acController!.delegate = self
+        acstart = false
+        self.presentViewController(acController!, animated: true, completion: nil)
         loadRecentSearches(false)
     }
     
