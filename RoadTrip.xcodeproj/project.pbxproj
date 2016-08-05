@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3556469E1D3018CE00168E48 /* Build configuration list for PBXProject "TripPlanner" */;
+			buildConfigurationList = 3556469E1D3018CE00168E48 /* Build configuration list for PBXProject "RoadTrip" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -406,7 +406,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3556469E1D3018CE00168E48 /* Build configuration list for PBXProject "TripPlanner" */ = {
+		3556469E1D3018CE00168E48 /* Build configuration list for PBXProject "RoadTrip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				355646B31D3018CE00168E48 /* Debug */,

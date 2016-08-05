@@ -18,6 +18,7 @@ class ViewControllerFunctions: UIViewController {
         marker.position = CLLocationCoordinate2DMake(lat, long)
         if isDestinationMarker {
             marker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+            marker.map = mapView
         }
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
             marker.title = title
@@ -28,7 +29,11 @@ class ViewControllerFunctions: UIViewController {
                 marker.snippet = response?.firstResult()?.locality
             }
         }
-        marker.map = mapView
+        if let rating = rating {
+            if rating >= 3.0 {
+                marker.map = mapView
+            }
+        }
         return marker
     }
     

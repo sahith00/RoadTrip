@@ -10,15 +10,21 @@ import UIKit
 import GoogleMaps
 import RealmSwift
 import Foundation
+import Material
 
 class TripViewController: UIViewController {
 
     var acController: GMSAutocompleteViewController?
     
+    @IBOutlet weak var planTripButton: UIButton!
+    
+    @IBOutlet weak var recentSearchesLabel: UILabel!
     @IBOutlet weak var recentSearchesTableView: UITableView!
     
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
+    //let startingTextField = TextField()
+    //let endingTextField = TextField()
     
     var acstart: Bool = true
     var tablestart: Bool = true
@@ -30,13 +36,24 @@ class TripViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         loadRecentSearches(true)
+        //planTripButton.layer.backgroundColor = UIColor.init(red: 101, green: 99, blue: 164, alpha: 100).CGColor
+//        startingTextField.placeholder = "Starting Address"
+//        endingTextField.placeholder = "Ending Address"
+//        
+//        view.layout(startingTextField).top(20).horizontally(left: 20, right: 20)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         recentSearchesTableView.reloadData()
-        self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.navigationBarHidden = true
+        if tablestart {
+            recentSearchesLabel.text = "Recent Starting Points"
+        }
+        else {
+            recentSearchesLabel.text = "Recent Ending Points"
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -150,9 +167,11 @@ extension TripViewController: GMSAutocompleteViewControllerDelegate {
         print("Autocomplete was cancelled.")
         if acstart {
             loadRecentSearches(true)
+            startingTextField.text = ""
         }
         else {
             loadRecentSearches(false)
+            endingTextField.text = ""
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }

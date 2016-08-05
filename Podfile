@@ -14,5 +14,6 @@ target 'TripPlanner' do
     pod 'AlamofireNetworkActivityIndicator'
     pod 'RealmSwift'
     pod 'SwiftyJSON'
+    pod 'Material', '~> 1.0'
 
 end
