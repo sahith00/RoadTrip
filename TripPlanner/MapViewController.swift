@@ -91,7 +91,7 @@ class MapViewController: ViewControllerFunctions {
     }
     
     @IBAction func businessSelect(sender: AnyObject) {
-        let alertController = UIAlertController(title: nil, message: "", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: "Choose Business", preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let gasStationAction = UIAlertAction(title: "Auto Services", style: .Default) { (action) in
@@ -102,6 +102,11 @@ class MapViewController: ViewControllerFunctions {
                 self.setCamera()
                 self.currentBusiness = "Gas Stations"
             }
+            else {
+                self.mapView.clear()
+                self.showRoute()
+                self.currentBusiness = ""
+            }
         }
         let hotelAction = UIAlertAction(title: "Hotels", style: .Default) { (action) in
             if self.currentBusiness != "Hotels" {
@@ -111,6 +116,11 @@ class MapViewController: ViewControllerFunctions {
                 self.setCamera()
                 self.currentBusiness = "Hotels"
             }
+            else {
+                self.mapView.clear()
+                self.showRoute()
+                self.currentBusiness = ""
+            }
         }
         let restaurantAction = UIAlertAction(title: "Restaurants", style: .Default) { (action) in
             if self.currentBusiness != "Restaurants" {
@@ -119,6 +129,11 @@ class MapViewController: ViewControllerFunctions {
                 self.callFullYelp("Restaurants", type: self.restaurants)
                 self.setCamera()
                 self.currentBusiness = "Restaurants"
+            }
+            else {
+                self.mapView.clear()
+                self.showRoute()
+                self.currentBusiness = ""
             }
         }
         

@@ -63,11 +63,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMD-xz-gdb">
                                 <rect key="frame" x="16" y="40" width="128" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.73333333333333328" green="0.72941176470588232" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="taj-z1-QmP">
-                                <rect key="frame" x="-4" y="299" width="383" height="244"/>
+                                <rect key="frame" x="-4" y="309" width="383" height="244"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="244" id="GPD-RV-mBO"/>
@@ -83,7 +83,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkq-GS-yFw">
                                                     <rect key="frame" x="8" y="11" width="367" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -105,10 +105,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXy-id-2UD">
-                                <rect key="frame" x="0.0" y="543" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="553" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.396078431372549" green="0.38823529411764707" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="jVS-yK-AS0"/>
+                                    <constraint firstAttribute="height" constant="50" id="2yH-dd-S2p"/>
                                 </constraints>
                                 <state key="normal" title="Plan Trip">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,7 +118,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gv-8d-KI9">
-                                <rect key="frame" x="114" y="248" width="146.5" height="27.5"/>
+                                <rect key="frame" x="114" y="258" width="146.5" height="27.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27.5" id="gAw-pm-B5l"/>
                                 </constraints>
@@ -149,11 +149,23 @@
                                 <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtm-Xq-7wK">
+                                <rect key="frame" x="319" y="16" width="40" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="7ml-jh-cov"/>
+                                    <constraint firstAttribute="width" constant="40" id="jBv-l5-MMB"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Sorting Arrows-50"/>
+                                <connections>
+                                    <action selector="reverseButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w4E-98-oZi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UXy-id-2UD" secondAttribute="bottom" id="0Qm-tD-9wA"/>
                             <constraint firstItem="nnb-zW-05D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7UA-bB-bps"/>
+                            <constraint firstItem="wtm-Xq-7wK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="7aC-gU-KKw"/>
                             <constraint firstItem="g1v-5k-yFw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="8Tb-md-lFd"/>
                             <constraint firstItem="7Gv-8d-KI9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Vg-qa-dMS"/>
                             <constraint firstItem="JMD-xz-gdb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="98p-1X-O5c"/>
@@ -161,6 +173,7 @@
                             <constraint firstItem="kjp-ib-udq" firstAttribute="top" secondItem="nnb-zW-05D" secondAttribute="bottom" id="Gjb-s9-eT9"/>
                             <constraint firstItem="dvO-G2-b7s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Lvc-RA-DD3"/>
                             <constraint firstItem="kjp-ib-udq" firstAttribute="top" secondItem="Dew-BS-lIX" secondAttribute="bottom" constant="26" id="PVa-tu-4li"/>
+                            <constraint firstItem="wtm-Xq-7wK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PvA-Xc-hqC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g1v-5k-yFw" secondAttribute="trailing" id="RYv-9o-KNs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dvO-G2-b7s" secondAttribute="trailing" id="Vj1-Hz-UAh"/>
                             <constraint firstItem="g1v-5k-yFw" firstAttribute="top" secondItem="dvO-G2-b7s" secondAttribute="bottom" id="XzZ-5j-y6K"/>
@@ -178,6 +191,7 @@
                             <constraint firstItem="taj-z1-QmP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="sMy-1o-ghe"/>
                             <constraint firstItem="kjp-ib-udq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="umn-FC-aRe"/>
                             <constraint firstItem="Dew-BS-lIX" firstAttribute="top" secondItem="dvO-G2-b7s" secondAttribute="bottom" constant="30" id="weQ-ms-RVn"/>
+                            <constraint firstItem="7Gv-8d-KI9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kjp-ib-udq" secondAttribute="bottom" constant="10" id="wpB-Bh-YhB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Road Trip" id="RmE-Sl-G8R" userLabel="Choose Route"/>
@@ -206,17 +220,33 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyM-o3-pPB">
+                                <rect key="frame" x="-4" y="559" width="383" height="44"/>
+                                <color key="backgroundColor" red="0.39607843139999999" green="0.38823529410000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem image="Settings-50" id="C4S-6i-QZb">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="qZg-in-Sz0" kind="show" id="5Rq-nN-7fq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.39607843139999999" green="0.38823529410000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9h-Td-p5W" userLabel="Map View" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gyM-o3-pPB" firstAttribute="leading" secondItem="g9r-d6-gN1" secondAttribute="leadingMargin" constant="-20" id="4do-S0-EcM"/>
                             <constraint firstAttribute="trailing" secondItem="N9h-Td-p5W" secondAttribute="trailing" id="6Qa-Oo-w8d"/>
-                            <constraint firstItem="gT9-69-To6" firstAttribute="top" secondItem="N9h-Td-p5W" secondAttribute="bottom" id="GOd-sS-gc5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gyM-o3-pPB" secondAttribute="trailing" constant="-20" id="Acr-Hj-3bV"/>
                             <constraint firstItem="N9h-Td-p5W" firstAttribute="top" secondItem="K4b-Qh-c77" secondAttribute="bottom" id="Jh8-gJ-yru"/>
                             <constraint firstItem="N9h-Td-p5W" firstAttribute="leading" secondItem="g9r-d6-gN1" secondAttribute="leading" id="aVg-wB-3xX"/>
+                            <constraint firstItem="gyM-o3-pPB" firstAttribute="top" secondItem="N9h-Td-p5W" secondAttribute="bottom" id="mDH-xD-qEw"/>
+                            <constraint firstItem="gT9-69-To6" firstAttribute="top" secondItem="gyM-o3-pPB" secondAttribute="bottom" id="s6u-HD-TG8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Your Trip" id="Jwu-xP-R4V">
@@ -238,5 +268,28 @@
             </objects>
             <point key="canvasLocation" x="685.5" y="311.5"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="pkg-oi-kaH">
+            <objects>
+                <viewController id="qZg-in-Sz0" userLabel="Settings View Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oOZ-YL-9L3"/>
+                        <viewControllerLayoutGuide type="bottom" id="wRv-Ur-rRj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OlG-FD-uMn">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnZ-jc-0Cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="685.5" y="1156.5"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Settings-50" width="25" height="25"/>
+        <image name="Sorting Arrows-50" width="50" height="50"/>
+    </resources>
 </document>

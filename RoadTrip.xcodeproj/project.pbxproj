@@ -65,7 +65,7 @@
 		3556469A1D3018CE00168E48 = {
 			isa = PBXGroup;
 			children = (
-				355646A51D3018CE00168E48 /* TripPlanner */,
+				355646A51D3018CE00168E48 /* RoadTrip */,
 				355646A41D3018CE00168E48 /* Products */,
 				37AF7A2CC7FCD71DADC54D05 /* Pods */,
 				3290E59B0A915EFD41A0219A /* Frameworks */,
@@ -80,7 +80,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		355646A51D3018CE00168E48 /* TripPlanner */ = {
+		355646A51D3018CE00168E48 /* RoadTrip */ = {
 			isa = PBXGroup;
 			children = (
 				358D6B111D42901F004E2791 /* Helpers */,
@@ -93,6 +93,7 @@
 				355646AF1D3018CE00168E48 /* LaunchScreen.storyboard */,
 				355646B21D3018CE00168E48 /* Info.plist */,
 			);
+			name = RoadTrip;
 			path = TripPlanner;
 			sourceTree = "<group>";
 		};
@@ -378,11 +379,11 @@
 			baseConfigurationReference = 8B35F79071AD6DCEF7A34EA3 /* Pods-TripPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sastry Bhamidipati (9GNAKXC4XV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sastry Bhamidipati (9GNAKXC4XV)";
 				INFOPLIST_FILE = TripPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sahithb.TripPlanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sahithb.RoadTrip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -393,11 +394,11 @@
 			baseConfigurationReference = 502F6EC262F4B1682191E165 /* Pods-TripPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sastry Bhamidipati (VB7SET62WV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sastry Bhamidipati (VB7SET62WV)";
 				INFOPLIST_FILE = TripPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sahithb.TripPlanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sahithb.RoadTrip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -60,6 +60,12 @@ class TripViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    @IBAction func reverseButtonClicked(sender: AnyObject) {
+        let temp = startingTextField.text
+        startingTextField.text = endingTextField.text
+        endingTextField.text = temp
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let route: Route = Route()
 
