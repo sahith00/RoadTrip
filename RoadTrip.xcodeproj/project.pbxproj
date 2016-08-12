@@ -19,6 +19,7 @@
 		358D6B0F1D3EE2B9004E2791 /* ViewControllerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */; };
 		358D6B131D429363004E2791 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D6B121D429363004E2791 /* RealmHelper.swift */; };
 		35A875441D46C9D700697953 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A875431D46C9D700697953 /* MapViewController.swift */; };
+		35EEAD871D5A8F4700D92D2A /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEAD861D5A8F4700D92D2A /* DetailsViewController.swift */; };
 		D0C6DCBCBC3CE790CA14E712 /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67C85BACC25D1451B1E02825 /* Pods_TripPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFunctions.swift; sourceTree = "<group>"; };
 		358D6B121D429363004E2791 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		35A875431D46C9D700697953 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		35EEAD861D5A8F4700D92D2A /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		502F6EC262F4B1682191E165 /* Pods-TripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripPlanner/Pods-TripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		67C85BACC25D1451B1E02825 /* Pods_TripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B35F79071AD6DCEF7A34EA3 /* Pods-TripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripPlanner/Pods-TripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				355646B81D30276200168E48 /* TripViewController.swift */,
 				35A875431D46C9D700697953 /* MapViewController.swift */,
 				358D6B0E1D3EE2B9004E2791 /* ViewControllerFunctions.swift */,
+				35EEAD861D5A8F4700D92D2A /* DetailsViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -112,7 +115,6 @@
 			children = (
 				358D6B0C1D36F63F004E2791 /* Route.swift */,
 				3513D47D1D3453CD00A2D47D /* Business.swift */,
-				3513D47B1D34535400A2D47D /* YelpClient.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				358D6B121D429363004E2791 /* RealmHelper.swift */,
+				3513D47B1D34535400A2D47D /* YelpClient.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				3513D47C1D34535400A2D47D /* YelpClient.swift in Sources */,
 				358D6B0D1D36F63F004E2791 /* Route.swift in Sources */,
 				3587EB131D497D9900A5DD27 /* RecentSearchesTableViewCell.swift in Sources */,
+				35EEAD871D5A8F4700D92D2A /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

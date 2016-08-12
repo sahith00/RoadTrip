@@ -20,6 +20,7 @@ class Business: NSObject {
     let reviewCount: NSNumber?
     let lat:CLLocationDegrees?
     let long:CLLocationDegrees?
+    let mobileURL: NSURL?
     
     
     init(dictionary: NSDictionary) {
@@ -90,8 +91,15 @@ class Business: NSObject {
         }
         rating = dictionary["rating"] as? Double
         
-        
         reviewCount = dictionary["review_count"] as? NSNumber
+        
+        let mobile = dictionary["mobile_url"] as? String
+        if mobile != nil {
+            mobileURL = NSURL(string: mobile!)
+        }
+        else {
+            mobileURL = nil
+        }
         
         
     }

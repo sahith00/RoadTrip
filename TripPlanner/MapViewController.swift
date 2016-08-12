@@ -42,6 +42,8 @@ class MapViewController: ViewControllerFunctions {
         route = RealmHelper.retrieveLastRoute()
         //print(route)
         
+        mapView.delegate = self
+        
         Alamofire.request(.GET, apiToContact, parameters: ["origin": route!.startAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "destination": route!.endAddress.stringByReplacingOccurrencesOfString(" ", withString: "+"), "key": "AIzaSyCtJyqEx9hHY11_uU0fUNcTASaFpWy5aWM"])
             .responseJSON { response in
                 if let value = response.result.value {
@@ -175,8 +177,8 @@ class MapViewController: ViewControllerFunctions {
     }
     
     func showRoute() {
-        createMarker(true, title: route!.startAddress, rating: nil, lat: startCoord.lat, long: startCoord.long, mapView: mapView)
-        createMarker(true, title: route!.endAddress, rating: nil, lat: endCoord.lat, long: endCoord.long, mapView: mapView)
+        createMarker(true, title: route!.startAddress, url: nil, rating: nil, lat: startCoord.lat, long: startCoord.long, mapView: mapView)
+        createMarker(true, title: route!.endAddress, url: nil, rating: nil, lat: endCoord.lat, long: endCoord.long, mapView: mapView)
         createPath(overviewRoute!, mapView: mapView)
     }
     
@@ -248,4 +250,15 @@ class MapViewController: ViewControllerFunctions {
      // Pass the selected object to the new view controller.
      }
      */
+}
+
+extension MapViewController: GMSMapViewDelegate {
+    func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
+        print("Marker Tapped")
+        print(marker.icon)
+        if marker.icon != GMSMarker.markerImageWithColor(UIColor.blueColor()) {
+            performSegueWithIdentifier("Details", sender: self)
+        }
+        return true
+    }
 }

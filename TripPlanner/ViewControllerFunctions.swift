@@ -11,9 +11,8 @@ import GoogleMaps
 
 class ViewControllerFunctions: UIViewController {
     
-    func createMarker(isDestinationMarker: Bool, title: String, rating: Double?, lat: Double, long: Double, mapView: GMSMapView) -> GMSMarker{
+    func createMarker(isDestinationMarker: Bool, title: String, url: NSURL?, rating: Double?, lat: Double, long: Double, mapView: GMSMapView) -> GMSMarker{
         let marker = GMSMarker()
-        marker.draggable = true
         let geocoder = GMSGeocoder()
         marker.position = CLLocationCoordinate2DMake(lat, long)
         if isDestinationMarker {
@@ -21,7 +20,12 @@ class ViewControllerFunctions: UIViewController {
             marker.map = mapView
         }
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
-            marker.title = title
+            if let url = url {
+                marker.title = String(url)
+            }
+            else {
+                marker.title = title
+            }
             if let rating = rating {
                 marker.snippet = "Rating: "+String(rating)+"/5"
             }
@@ -73,7 +77,7 @@ class ViewControllerFunctions: UIViewController {
                 for business in businesses {
                     if let lat = business.lat {
                         if let long = business.long {
-                            self.createMarker(false, title: business.name!, rating: business.rating, lat: lat, long: long, mapView: mapView)
+                            self.createMarker(false, title: business.name!, url: business.mobileURL!, rating: business.rating, lat: lat, long: long, mapView: mapView)
                         }
                     }
                 }
