@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3513D47C1D34535400A2D47D /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513D47B1D34535400A2D47D /* YelpClient.swift */; };
 		3513D47E1D3453CD00A2D47D /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513D47D1D3453CD00A2D47D /* Business.swift */; };
+		35493D901D5E49A70042BACA /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35493D8F1D5E49A70042BACA /* Details.swift */; };
 		355646A71D3018CE00168E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355646A61D3018CE00168E48 /* AppDelegate.swift */; };
 		355646AC1D3018CE00168E48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 355646AA1D3018CE00168E48 /* Main.storyboard */; };
 		355646AE1D3018CE00168E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 355646AD1D3018CE00168E48 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		3513D47B1D34535400A2D47D /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		3513D47D1D3453CD00A2D47D /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		35493D8F1D5E49A70042BACA /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		355646A31D3018CE00168E48 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		355646A61D3018CE00168E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		355646AB1D3018CE00168E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				358D6B0C1D36F63F004E2791 /* Route.swift */,
 				3513D47D1D3453CD00A2D47D /* Business.swift */,
+				35493D8F1D5E49A70042BACA /* Details.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				3513D47C1D34535400A2D47D /* YelpClient.swift in Sources */,
 				358D6B0D1D36F63F004E2791 /* Route.swift in Sources */,
 				3587EB131D497D9900A5DD27 /* RecentSearchesTableViewCell.swift in Sources */,
+				35493D901D5E49A70042BACA /* Details.swift in Sources */,
 				35EEAD871D5A8F4700D92D2A /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

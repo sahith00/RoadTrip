@@ -36,11 +36,12 @@ class TripViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         loadRecentSearches(true)
-        //planTripButton.layer.backgroundColor = UIColor.init(red: 101, green: 99, blue: 164, alpha: 100).CGColor
-//        startingTextField.placeholder = "Starting Address"
-//        endingTextField.placeholder = "Ending Address"
-//        
-//        view.layout(startingTextField).top(20).horizontally(left: 20, right: 20)
+        
+        startingTextField.placeholder = "Starting Address"
+        endingTextField.placeholder = "Ending Address"
+        
+        view.layout(startingTextField).top(50).horizontally(left: 20, right: 20)
+        view.layout(endingTextField).top(130).horizontally(left: 20, right: 20)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -132,6 +133,17 @@ class TripViewController: UIViewController {
         }
         recentSearchesTableView.reloadData()
         tablestart = start
+    }
+    
+    func textFieldShouldReturn(theTextField: TextField) -> Bool {
+        if theTextField == self.endingTextField {
+            theTextField.resignFirstResponder()
+        }
+        else if theTextField == self.startingTextField {
+            self.endingTextField.becomeFirstResponder()
+        }
+        
+        return true
     }
     
         

@@ -30,7 +30,7 @@ class MapViewController: ViewControllerFunctions {
     var hotels: (names: [String], lats: [Double], longs: [Double]) = ([], [], [])
     var restaurants: (names: [String], lats: [Double], longs: [Double]) = ([], [], [])
     
-    var currentBusiness: String = ""
+    var currentType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,45 +97,45 @@ class MapViewController: ViewControllerFunctions {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let gasStationAction = UIAlertAction(title: "Auto Services", style: .Default) { (action) in
-            if self.currentBusiness != "Gas Stations" {
+            if self.currentType != "Gas Stations" {
                 self.mapView.clear()
                 self.showRoute()
                 self.callFullYelp("Gas Stations", type: self.gasStations)
                 self.setCamera()
-                self.currentBusiness = "Gas Stations"
+                self.currentType = "Gas Stations"
             }
             else {
                 self.mapView.clear()
                 self.showRoute()
-                self.currentBusiness = ""
+                self.currentType = ""
             }
         }
         let hotelAction = UIAlertAction(title: "Hotels", style: .Default) { (action) in
-            if self.currentBusiness != "Hotels" {
+            if self.currentType != "Hotels" {
                 self.mapView.clear()
                 self.showRoute()
                 self.callFullYelp("Hotels", type: self.hotels)
                 self.setCamera()
-                self.currentBusiness = "Hotels"
+                self.currentType = "Hotels"
             }
             else {
                 self.mapView.clear()
                 self.showRoute()
-                self.currentBusiness = ""
+                self.currentType = ""
             }
         }
         let restaurantAction = UIAlertAction(title: "Restaurants", style: .Default) { (action) in
-            if self.currentBusiness != "Restaurants" {
+            if self.currentType != "Restaurants" {
                 self.mapView.clear()
                 self.showRoute()
                 self.callFullYelp("Restaurants", type: self.restaurants)
                 self.setCamera()
-                self.currentBusiness = "Restaurants"
+                self.currentType = "Restaurants"
             }
             else {
                 self.mapView.clear()
                 self.showRoute()
-                self.currentBusiness = ""
+                self.currentType = ""
             }
         }
         
@@ -190,7 +190,7 @@ class MapViewController: ViewControllerFunctions {
             radius = 40000
         }
         
-        callYelp(business, places: type, latitude: endCoords.lats[0], longitude: endCoords.longs[0], radius: radius, mapView: mapView)
+        //callYelp(business, places: type, latitude: endCoords.lats[0], longitude: endCoords.longs[0], radius: radius, mapView: mapView)
         
         while i < len {
             
@@ -252,13 +252,24 @@ class MapViewController: ViewControllerFunctions {
      */
 }
 
-extension MapViewController: GMSMapViewDelegate {
-    func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
-        print("Marker Tapped")
-        print(marker.icon)
+extension MapViewController: GMSMapViewDelegate {    
+    func mapView(mapView: GMSMapView, didTapInfoWindowOfMarker marker: GMSMarker) {
+        details.title = marker.title!
+        details.url = urls[marker]
         if marker.icon != GMSMarker.markerImageWithColor(UIColor.blueColor()) {
             performSegueWithIdentifier("Details", sender: self)
         }
-        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "Details" {
+                let detailsViewController = segue.destinationViewController as! DetailsViewController
+                detailsViewController.details.title = details.title
+                if let url = details.url {
+                    detailsViewController.details.url = url
+                }
+            }
+        }
     }
 }

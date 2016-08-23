@@ -11,7 +11,10 @@ import GoogleMaps
 
 class ViewControllerFunctions: UIViewController {
     
-    func createMarker(isDestinationMarker: Bool, title: String, url: NSURL?, rating: Double?, lat: Double, long: Double, mapView: GMSMapView) -> GMSMarker{
+    var details: Details = Details()
+    var urls: [GMSMarker: NSURL] = [:]
+    
+    func createMarker(isDestinationMarker: Bool, title: String, url: NSURL?, rating: Double?, lat: Double, long: Double, mapView: GMSMapView){
         let marker = GMSMarker()
         let geocoder = GMSGeocoder()
         marker.position = CLLocationCoordinate2DMake(lat, long)
@@ -20,12 +23,8 @@ class ViewControllerFunctions: UIViewController {
             marker.map = mapView
         }
         geocoder.reverseGeocodeCoordinate(marker.position) { (response, error) in
-            if let url = url {
-                marker.title = String(url)
-            }
-            else {
-                marker.title = title
-            }
+            marker.title = title
+            
             if let rating = rating {
                 marker.snippet = "Rating: "+String(rating)+"/5"
             }
@@ -38,7 +37,9 @@ class ViewControllerFunctions: UIViewController {
                 marker.map = mapView
             }
         }
-        return marker
+        if let url = url {
+            urls[marker] = url
+        }
     }
     
     func createPath(route: String, mapView: GMSMapView) {

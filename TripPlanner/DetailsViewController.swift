@@ -9,13 +9,20 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-
-    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var detailLabel: UILabel!
+    
+    @IBOutlet weak var urlLabel: UILabel!
+    var details: Details = Details()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        detailLabel.text = details.title
+        if let url = details.url {
+            urlLabel.text = url.description
+        }
     }
 
     override func didReceiveMemoryWarning() {
