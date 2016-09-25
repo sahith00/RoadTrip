@@ -30,6 +30,13 @@ class DetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func openUrl(url:String!) {
+        let targetURL=NSURL(string: url)
+        let application=UIApplication.sharedApplication()
+        
+        application.openURL(targetURL!);
+    }
+    
     
     /*
     // MARK: - Navigation
